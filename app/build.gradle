@@ -6,12 +6,18 @@ plugins {
 android {
     compileSdk 32
 
+    def apikeyPropertiesFile = rootProject.file("apikey.properties")
+    def apikeyProperties = new Properties()
+    apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
     defaultConfig {
         applicationId "com.rafagnin.gaming"
         minSdk 21
         targetSdk 32
         versionCode 1
         versionName "1.0"
+
+        buildConfigField("String", "RAWG_API_KEY", apikeyProperties['RAWG_API_KEY'])
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
