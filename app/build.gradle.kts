@@ -7,7 +7,6 @@ plugins {
 
 android {
     compileSdk = 32
-    buildToolsVersion = "32.0.0"
 
     val apiKey = gradleLocalProperties(rootDir).getProperty("RAWG_API_KEY")
 
