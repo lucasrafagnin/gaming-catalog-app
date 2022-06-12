@@ -7,9 +7,9 @@ import coil.load
 import com.rafagnin.gaming.data.remote.model.GameModel
 import com.rafagnin.gaming.databinding.ItemDemoBinding
 
-class DemoAdapter(
-    private val list: MutableList<GameModel>
-) : RecyclerView.Adapter<DemoAdapter.DemoViewHolder>() {
+class DemoAdapter : RecyclerView.Adapter<DemoAdapter.DemoViewHolder>() {
+
+    private val list: MutableList<GameModel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DemoViewHolder {
         val view = ItemDemoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,7 +30,10 @@ class DemoAdapter(
 
     class DemoViewHolder(private val view: ItemDemoBinding) : RecyclerView.ViewHolder(view.root) {
         fun bind(item: GameModel) {
-            view.image.load(item.image)
+            view.image.load(item.image) {
+                crossfade(true)
+            }
+            view.name.text = item.name
         }
     }
 }

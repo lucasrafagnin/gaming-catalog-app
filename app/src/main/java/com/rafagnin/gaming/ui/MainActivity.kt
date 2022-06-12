@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var viewModel: MainViewModel
 
-    private val adapter = DemoAdapter(mutableListOf())
+    private val adapter = DemoAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
