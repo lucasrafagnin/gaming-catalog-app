@@ -59,6 +59,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.1")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.4.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.4.2")
     implementation("io.coil-kt:coil:2.1.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
