@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/games_list_fragment">
+
+    <fragment
+        android:id="@+id/games_list_fragment"
+        android:name="com.rafagnin.gaming.ui.fragment.GamesListFragment"
+        android:label="Games list" />
+
+    <fragment
+        android:id="@+id/upcoming_games_fragment"
+        android:name="com.rafagnin.gaming.ui.fragment.UpcomingGamesFragment"
+        android:label="Upcoming games" />
+
+    <fragment
+        android:id="@+id/discovery_games_fragment"
+        android:name="com.rafagnin.gaming.ui.fragment.DiscoveryGamesFragment"
+        android:label="Discovery games" />
+
+</navigation>
