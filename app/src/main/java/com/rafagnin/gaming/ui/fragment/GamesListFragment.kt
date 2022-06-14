@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.navGraphViewModels
-import com.rafagnin.gaming.R
 import com.rafagnin.gaming.adapter.DemoAdapter
 import com.rafagnin.gaming.databinding.FragmentAllGamesBinding
 
@@ -29,7 +27,7 @@ class GamesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel: GamesListViewModel by navGraphViewModels(R.id.games_list_fragment)
+        val viewModel: GamesListViewModel = ViewModelProvider(requireActivity())[GamesListViewModel::class.java]
         binding.list.adapter = adapter
 
         viewModel.getGames()
