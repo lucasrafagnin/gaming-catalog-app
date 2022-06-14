@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.rafagnin.gaming.adapter.DemoAdapter
+import com.rafagnin.gaming.ui.fragment.adapter.UpcomingGamesAdapter
 import com.rafagnin.gaming.databinding.FragmentAllGamesBinding
+import com.rafagnin.gaming.ui.fragment.viewmodel.GamesListViewModel
 
 class GamesListFragment : Fragment() {
 
     private lateinit var binding: FragmentAllGamesBinding
-    private val adapter = DemoAdapter()
+    private val adapter = UpcomingGamesAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,

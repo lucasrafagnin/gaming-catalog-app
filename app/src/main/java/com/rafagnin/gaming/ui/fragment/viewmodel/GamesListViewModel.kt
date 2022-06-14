@@ -1,4 +1,4 @@
-package com.rafagnin.gaming.ui.fragment
+package com.rafagnin.gaming.ui.fragment.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,8 +14,8 @@ import kotlinx.coroutines.withContext
 class GamesListViewModel : ViewModel() {
 
     private val repository = GameRepository()
-    private val _items = MutableLiveData<List<GameModel>>()
 
+    private val _items = MutableLiveData<List<GameModel>>()
     val items: LiveData<List<GameModel>>
         get() = _items
 
