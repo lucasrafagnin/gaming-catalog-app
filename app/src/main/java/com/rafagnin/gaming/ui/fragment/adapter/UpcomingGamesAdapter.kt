@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.rafagnin.gaming.data.remote.model.GameModel
-import com.rafagnin.gaming.databinding.ItemDemoBinding
+import com.rafagnin.gaming.databinding.ItemGameBinding
 import com.rafagnin.gaming.ui.fragment.adapter.UpcomingGamesAdapter.UpcomingAdapter
 
 class UpcomingGamesAdapter : RecyclerView.Adapter<UpcomingAdapter>() {
@@ -13,7 +13,7 @@ class UpcomingGamesAdapter : RecyclerView.Adapter<UpcomingAdapter>() {
     private val list: MutableList<GameModel> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpcomingAdapter {
-        val view = ItemDemoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view = ItemGameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return UpcomingAdapter(view)
     }
 
@@ -29,7 +29,7 @@ class UpcomingGamesAdapter : RecyclerView.Adapter<UpcomingAdapter>() {
         notifyDataSetChanged()
     }
 
-    class UpcomingAdapter(private val view: ItemDemoBinding) : RecyclerView.ViewHolder(view.root) {
+    class UpcomingAdapter(private val view: ItemGameBinding) : RecyclerView.ViewHolder(view.root) {
         fun bind(item: GameModel) {
             view.image.load(item.image) {
                 crossfade(true)
