@@ -11,4 +11,10 @@ interface ApiService {
     suspend fun getGames(
         @Query("key") key: String
     ): Response<ResultModel>
+
+    @GET("api/games")
+    suspend fun getUpcomingGames(
+        @Query("key") key: String,
+        @Query("dates") dates: String
+    ): Response<ResultModel>
 }
