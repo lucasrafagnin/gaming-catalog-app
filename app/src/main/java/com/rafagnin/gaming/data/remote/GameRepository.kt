@@ -14,7 +14,7 @@ class GameRepository {
 
     suspend fun getUpcomingGames(apiKey: String) = getRetrofit()
         .create(ApiService::class.java)
-        .getUpcomingGames(apiKey, getNext12MonthsDate())
+        .getUpcomingGames(apiKey, getNext12MonthsDate(), "released")
 
     private fun getNext12MonthsDate(): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())

@@ -15,6 +15,7 @@ interface ApiService {
     @GET("api/games")
     suspend fun getUpcomingGames(
         @Query("key") key: String,
-        @Query("dates") dates: String
+        @Query("dates") dates: String,
+        @Query("ordering") ordering: String
     ): Response<ResultModel>
 }
