@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/layout/fragment_discovery_games.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_upcoming_games.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/item_demo.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/item_game.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/item_upcoming.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/main.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/menu/menu_bottom_nav.xml" value="0.37604166666666666" />
