@@ -10,6 +10,7 @@ A Gaming Catalog 🎮 app showcase using a modern Android tech-stacks and MVVM a
 - [Kotlin](https://kotlinlang.org/) - Official programming language for Android development.
 - [Dagger Hilt](https://dagger.dev/hilt/) - Dependency Injection library for Android
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - For asynchronous stuff and more.
+- [Flow](https://developer.android.com/kotlin/flow) - A cold asynchronous data stream that sequentially emits values and completes normally or with an exception.
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying database changes.
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Manages UI data and lifecycle aware. Allows data to survive configuration changes such as screen rotations.
 - [ViewBinding](https://developer.android.com/topic/libraries/view-binding) - Bind UI components from layouts to data sources in app using a declarative format rather than programmatically.
@@ -21,3 +22,7 @@ A Gaming Catalog 🎮 app showcase using a modern Android tech-stacks and MVVM a
 
 ## Find this repository useful? ⭐:
 __[follow](https://github.com/lucasrafagnin)__ me for my next creations.
+
+## Architecture 🏗️
+
+![MVVM-with-Kotlin-Coroutines-and-Retrofit](https://user-images.githubusercontent.com/5746225/173910060-ea44be05-e38c-45d3-bd9f-7bd3153b67ce.png)
