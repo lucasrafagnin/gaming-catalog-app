@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.rafagnin.gaming.data.remote.model.GameModel
 import com.rafagnin.gaming.databinding.ItemGameBinding
+import javax.inject.Inject
 
-class GamesAdapter : RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
+class GamesAdapter @Inject constructor() : RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
 
     private val list: MutableList<GameModel> = mutableListOf()
 

@@ -9,11 +9,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.rafagnin.gaming.databinding.FragmentAllGamesBinding
 import com.rafagnin.gaming.ui.fragment.adapter.GamesAdapter
 import com.rafagnin.gaming.ui.fragment.viewmodel.GamesListViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class GamesListFragment : Fragment() {
 
     private lateinit var binding: FragmentAllGamesBinding
-    private val adapter = GamesAdapter()
+    @Inject lateinit var adapter: GamesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,

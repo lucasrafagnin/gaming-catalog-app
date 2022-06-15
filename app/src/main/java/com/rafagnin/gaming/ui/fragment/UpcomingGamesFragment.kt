@@ -9,7 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.rafagnin.gaming.ui.fragment.adapter.UpcomingGamesAdapter
 import com.rafagnin.gaming.databinding.FragmentUpcomingGamesBinding
 import com.rafagnin.gaming.ui.fragment.viewmodel.UpcomingGamesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UpcomingGamesFragment : Fragment() {
 
     private lateinit var binding: FragmentUpcomingGamesBinding

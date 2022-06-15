@@ -4,16 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rafagnin.gaming.BuildConfig
 import com.rafagnin.gaming.data.remote.model.GameModel
-import com.rafagnin.gaming.data.remote.GameRepository
+import com.rafagnin.gaming.data.repository.GameRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class UpcomingGamesViewModel : ViewModel() {
-
-    private val repository = GameRepository()
+@HiltViewModel
+class UpcomingGamesViewModel @Inject constructor(
+    private val repository: GameRepository
+) : ViewModel() {
 
     private val _items = MutableLiveData<List<GameModel>>()
     val items: LiveData<List<GameModel>>
@@ -21,7 +23,7 @@ class UpcomingGamesViewModel : ViewModel() {
 
     fun getUpcomingGames() {
         viewModelScope.launch(Dispatchers.IO) {
-            val res = repository.getUpcomingGames(BuildConfig.RAWG_API_KEY)
+            val res = repository.getUpcomingGames()
 
             if (res.isSuccessful) {
                 withContext(Dispatchers.Main) {
