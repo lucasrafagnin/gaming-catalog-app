@@ -8,6 +8,7 @@ A Gaming Catalog 🎮 app showcase using a modern Android tech-stacks and MVVM a
 ## Tech Stack 🛠
 - Minimum SDK API level: 21
 - [Kotlin](https://kotlinlang.org/) - Official programming language for Android development.
+- [Dagger Hilt](https://dagger.dev/hilt/) - Dependency Injection library for Android
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - For asynchronous stuff and more.
 - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying database changes.
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Manages UI data and lifecycle aware. Allows data to survive configuration changes such as screen rotations.
