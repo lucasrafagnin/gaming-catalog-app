@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.rafagnin.gaming.ui.fragment.adapter.UpcomingGamesAdapter
 import com.rafagnin.gaming.databinding.FragmentUpcomingGamesBinding
+import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState
 import com.rafagnin.gaming.ui.fragment.viewmodel.UpcomingGamesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,10 +35,11 @@ class UpcomingGamesFragment : Fragment() {
         binding.list.adapter = adapter
 
         viewModel.getUpcomingGames()
-        viewModel.items.observe(viewLifecycleOwner) {
-            it?.let {
-                adapter.update(it)
-            }
-        }
+        viewModel.state.observe(viewLifecycleOwner) { render(it) }
+    }
+
+    private fun render(state: UpcomingGamesState) = when(state) {
+        is UpcomingGamesState.GamesLoaded -> adapter.update(state.items)
+        is UpcomingGamesState.Loading -> {} //TODO
     }
 }
