@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.games_list_fragment,
                 R.id.upcoming_games_fragment,
-                R.id.discovery_games_fragment
             )
         )
         setupActionBarWithNavController(navHostFragment.navController, appBarConfiguration)
@@ -47,7 +46,6 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.all_games -> navHostFragment.navController.navigate(R.id.games_list_fragment)
                 R.id.upcoming_games -> navHostFragment.navController.navigate(R.id.upcoming_games_fragment)
-                R.id.discovery_games -> navHostFragment.navController.navigate(R.id.discovery_games_fragment)
             }
             true
         }

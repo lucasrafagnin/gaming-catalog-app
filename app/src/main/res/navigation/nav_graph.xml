@@ -7,16 +7,10 @@
     <fragment
         android:id="@+id/games_list_fragment"
         android:name="com.rafagnin.gaming.ui.fragment.GamesListFragment"
-        android:label="Games list" />
+        android:label="@string/tab_games" />
 
     <fragment
         android:id="@+id/upcoming_games_fragment"
         android:name="com.rafagnin.gaming.ui.fragment.UpcomingGamesFragment"
-        android:label="Upcoming games" />
-
-    <fragment
-        android:id="@+id/discovery_games_fragment"
-        android:name="com.rafagnin.gaming.ui.fragment.DiscoveryGamesFragment"
-        android:label="Discovery games" />
-
+        android:label="@string/tab_upcoming" />
 </navigation>

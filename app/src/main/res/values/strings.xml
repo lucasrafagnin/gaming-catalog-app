@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GamingCatalog</string>
+    <string name="tab_games">Games</string>
+    <string name="tab_upcoming">Upcoming</string>
 </resources>
