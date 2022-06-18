@@ -2,6 +2,7 @@ package com.rafagnin.gaming.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -19,22 +20,21 @@ class MainActivity : AppCompatActivity() {
         val binding = MainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val bottomNavigation = binding.bottomNavigation
 
-        setupTopBar(navHostFragment)
+        setupTopBar(binding.toolbar, navHostFragment)
         setupBottomNavigation(navHostFragment, bottomNavigation)
     }
 
-    private fun setupTopBar(navHostFragment: NavHostFragment) {
+    private fun setupTopBar(toolbar: Toolbar, navHostFragment: NavHostFragment) {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.games_list_fragment,
                 R.id.upcoming_games_fragment,
             )
         )
-        setupActionBarWithNavController(navHostFragment.navController, appBarConfiguration)
+        toolbar.setupWithNavController(navHostFragment.navController, appBarConfiguration)
     }
 
     private fun setupBottomNavigation(
