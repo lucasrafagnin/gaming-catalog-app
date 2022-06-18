@@ -1,5 +1,6 @@
 package com.rafagnin.gaming.ui.fragment.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -23,9 +24,10 @@ class GamesAdapter @Inject constructor() : RecyclerView.Adapter<GamesAdapter.Gam
 
     override fun getItemCount() = list.size
 
-    fun update(items: List<GameModel>) {
+    @SuppressLint("NotifyDataSetChanged")
+    fun update(items: List<GameModel>?) {
         this.list.clear()
-        this.list.addAll(items)
+        this.list.addAll(items.orEmpty())
         notifyDataSetChanged()
     }
 

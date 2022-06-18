@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.rafagnin.gaming.databinding.FragmentAllGamesBinding
 import com.rafagnin.gaming.ui.fragment.adapter.GamesAdapter
+import com.rafagnin.gaming.ui.fragment.state.GamesListState
+import com.rafagnin.gaming.ui.fragment.state.GamesListState.*
 import com.rafagnin.gaming.ui.fragment.viewmodel.GamesListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -35,10 +37,11 @@ class GamesListFragment : Fragment() {
         binding.list.adapter = adapter
 
         viewModel.getGames()
-        viewModel.items.observe(viewLifecycleOwner) {
-            it?.let {
-                adapter.update(it)
-            }
-        }
+        viewModel.state.observe(viewLifecycleOwner) { render(it) }
+    }
+
+    private fun render(state: GamesListState) = when(state) {
+        is GamesLoaded -> adapter.update(state.items)
+        is Loading -> {} //TODO
     }
 }
