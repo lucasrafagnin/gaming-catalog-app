@@ -50,19 +50,17 @@ android {
 
 dependencies {
 
+    implementation(libs.bundles.coroutines)
+    implementation(libs.bundles.moshi)
+    implementation(libs.bundles.navigation)
+    implementation(libs.bundles.retrofit)
+
     implementation(libs.appCompat)
     implementation(libs.coil)
-    implementation(libs.coroutinesAndroid)
-    implementation(libs.coroutinesCore)
     implementation(libs.hilt)
     implementation(libs.liveData)
     implementation(libs.material)
-    implementation(libs.moshiAdapter)
-    implementation(libs.moshiKotlin)
-    implementation(libs.navigationFragment)
-    implementation(libs.navigationUI)
     implementation(libs.paging)
-    implementation(libs.retrofit)
     implementation(libs.retrofitMoshi)
     implementation(libs.viewModel)
 

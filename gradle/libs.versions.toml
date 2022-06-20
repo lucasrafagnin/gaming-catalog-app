@@ -34,3 +34,9 @@ paging = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofitMoshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
 viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "viewModel" }
+
+[bundles]
+moshi = ["moshiAdapter", "moshiKotlin"]
+navigation = ["navigationFragment", "navigationUI"]
+retrofit = ["retrofit", "retrofitMoshi"]
+coroutines = ["coroutinesAndroid", "coroutinesCore"]
