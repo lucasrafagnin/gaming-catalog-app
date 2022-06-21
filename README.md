@@ -1,5 +1,5 @@
 
-<h1 align="center">Games Showcase</h1></br>
+<h1 align="center">Gaming Catalog</h1></br>
 <p align="center">  
 A Gaming Catalog 🎮 app showcase using a modern Android tech-stacks and MVVM architecture.<br>
 </p>
