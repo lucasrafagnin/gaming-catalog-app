@@ -3,9 +3,10 @@ appCompat = "1.4.2"
 coil = "2.1.0"
 coroutines = "1.6.3"
 espresso = "3.4.0"
-hilt = "2.38.1"
-hiltCompiler = "2.38.1"
+gradle = "7.1.3"
+hilt = "2.42"
 junit = "1.1.3"
+kotlin = "1.5.31"
 liveData = "2.4.1"
 material = "1.6.1"
 moshiAdapter = "1.5.0"
@@ -22,7 +23,7 @@ coroutinesAndroid = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android
 coroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-hiltCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltCompiler" }
+hiltCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 junit = { module = "androidx.test.ext:junit", version.ref = "junit" }
 liveData = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "liveData" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
