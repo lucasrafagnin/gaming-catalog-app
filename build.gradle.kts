@@ -1,16 +1,14 @@
 buildscript {
-    val kotlinVersion by extra("1.5.31")
-
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.1.3")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.4.2")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.38.1")
+        classpath("com.android.tools.build:gradle:${libs.versions.gradle.get()}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlin.get()}")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${libs.versions.navigation.get()}")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:${libs.versions.hilt.get()}")
     }
 }
 
