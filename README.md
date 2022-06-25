@@ -1,5 +1,9 @@
 
 <h1 align="center">Gaming Catalog</h1></br>
+
+<p align="center">
+  <a href="https://www.codacy.com/gh/lucasrafagnin/gaming-catalog-app/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lucasrafagnin/gaming-catalog-app&amp;utm_campaign=Badge_Grade"><img alt="Google" src="https://app.codacy.com/project/badge/Grade/b94705a2018944e6a3714289b1ff1649"/></a>
+</p>
 <p align="center">  
 A Gaming Catalog 🎮 app showcase using a modern Android tech-stacks and MVVM architecture.<br>
 </p>
@@ -20,7 +24,7 @@ A Gaming Catalog 🎮 app showcase using a modern Android tech-stacks and MVVM a
 - [Coil-kt](https://coil-kt.github.io/coil/) - An image loading library for Android backed by Kotlin Coroutines.
 - [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - For writing Gradle build scripts using Kotlin.
 
-## Find this repository useful? ⭐:
+## Find this repository useful? ⭐
 __[follow](https://github.com/lucasrafagnin)__ me for my next creations.
 
 ## Architecture 🏗️
