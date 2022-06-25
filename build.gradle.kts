@@ -1,3 +1,7 @@
+plugins {
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
+}
+
 buildscript {
     repositories {
         google()
@@ -13,6 +17,8 @@ buildscript {
 }
 
 allprojects {
+
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     repositories {
         google()
