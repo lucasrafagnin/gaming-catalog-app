@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rafagnin.gaming.data.remote.model.GameModel
 import com.rafagnin.gaming.data.repository.GameRepository
 import com.rafagnin.gaming.ui.fragment.state.GamesListState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class GamesListViewModel @Inject constructor(
     private val repository: GameRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _state = MutableLiveData<GamesListState>()
     val state: LiveData<GamesListState>

@@ -11,7 +11,8 @@ import com.rafagnin.gaming.ext.gone
 import com.rafagnin.gaming.ext.show
 import com.rafagnin.gaming.ui.fragment.adapter.GamesAdapter
 import com.rafagnin.gaming.ui.fragment.state.GamesListState
-import com.rafagnin.gaming.ui.fragment.state.GamesListState.*
+import com.rafagnin.gaming.ui.fragment.state.GamesListState.GamesLoaded
+import com.rafagnin.gaming.ui.fragment.state.GamesListState.Loading
 import com.rafagnin.gaming.ui.fragment.viewmodel.GamesListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -42,7 +43,7 @@ class GamesListFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner) { render(it) }
     }
 
-    private fun render(state: GamesListState) = when(state) {
+    private fun render(state: GamesListState) = when (state) {
         is GamesLoaded -> {
             adapter.update(state.items)
             binding.loading.gone()
