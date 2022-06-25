@@ -6,6 +6,9 @@ A Gaming Catalog 🎮 app showcase using a modern Android tech-stacks and MVVM a
 <br>
 
 ## Tech Stack 🛠
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ed49bfa7246e4d25837706917cf37877)](https://app.codacy.com/gh/lucasrafagnin/gaming-catalog-app?utm_source=github.com&utm_medium=referral&utm_content=lucasrafagnin/gaming-catalog-app&utm_campaign=Badge_Grade_Settings)
+
 - Minimum SDK API level: 21
 - [Kotlin](https://kotlinlang.org/) - Official programming language for Android development.
 - [Dagger Hilt](https://dagger.dev/hilt/) - Dependency Injection library for Android
