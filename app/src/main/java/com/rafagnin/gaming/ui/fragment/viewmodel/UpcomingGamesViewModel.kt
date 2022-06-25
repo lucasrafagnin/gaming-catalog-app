@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rafagnin.gaming.data.repository.GameRepository
+import com.rafagnin.gaming.domain.usecase.GetUpcomingGames
 import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UpcomingGamesViewModel @Inject constructor(
-    private val repository: GameRepository
+    private val getUpcomingGames: GetUpcomingGames
 ) : ViewModel() {
 
     private val _state = MutableLiveData<UpcomingGamesState>()
@@ -23,7 +23,7 @@ class UpcomingGamesViewModel @Inject constructor(
 
     fun getUpcomingGames() {
         viewModelScope.launch(Dispatchers.IO) {
-            val res = repository.getUpcomingGames()
+            val res = getUpcomingGames.invoke()
 
             if (res.isSuccessful) {
                 withContext(Dispatchers.Main) {

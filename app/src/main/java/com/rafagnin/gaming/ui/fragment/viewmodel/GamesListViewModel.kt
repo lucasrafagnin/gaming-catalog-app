@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rafagnin.gaming.data.repository.GameRepository
+import com.rafagnin.gaming.domain.usecase.GetAllGames
 import com.rafagnin.gaming.ui.fragment.state.GamesListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GamesListViewModel @Inject constructor(
-    private val repository: GameRepository
+    private val getAllGames: GetAllGames
 ) : ViewModel() {
 
     private val _state = MutableLiveData<GamesListState>()
@@ -23,7 +23,7 @@ class GamesListViewModel @Inject constructor(
 
     fun getGames() {
         viewModelScope.launch(Dispatchers.IO) {
-            val res = repository.getGames()
+            val res = getAllGames.invoke()
 
             if (res.isSuccessful) {
                 withContext(Dispatchers.Main) {
