@@ -1,4 +1,4 @@
-package com.rafagnin.gaming.data.remote
+package com.rafagnin.gaming.data.remote.service
 
 import com.rafagnin.gaming.data.remote.model.ResultModel
 import retrofit2.Response

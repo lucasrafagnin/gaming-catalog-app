@@ -1,7 +1,7 @@
 package com.rafagnin.gaming.di
 
 import com.rafagnin.gaming.BuildConfig
-import com.rafagnin.gaming.data.remote.GamingService
+import com.rafagnin.gaming.data.remote.service.GamingService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

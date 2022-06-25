@@ -1,5 +1,6 @@
 package com.rafagnin.gaming.data.remote
 
+import com.rafagnin.gaming.data.remote.service.GamingService
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
