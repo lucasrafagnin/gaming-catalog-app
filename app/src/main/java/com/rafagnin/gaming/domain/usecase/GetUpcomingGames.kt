@@ -1,6 +1,8 @@
 package com.rafagnin.gaming.domain.usecase
 
 import com.rafagnin.gaming.data.repository.GameRepository
+import com.rafagnin.gaming.domain.Resource
+import kotlinx.coroutines.flow.flow
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -9,9 +11,13 @@ class GetUpcomingGames @Inject constructor(
     private val repository: GameRepository
 ) {
 
-    suspend operator fun invoke() = repository.getUpcomingGames(
-        limitDate = getNextYearDate()
-    )
+    operator fun invoke() = flow {
+        try {
+            emit(Resource.Success(repository.getUpcomingGames(getNextYearDate())))
+        } catch (exception: Exception) {
+            emit(Resource.Error("error"))
+        }
+    }
 
     private fun getNextYearDate(): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())

@@ -1,6 +1,6 @@
 package com.rafagnin.gaming.ui.fragment.state
 
-import com.rafagnin.gaming.data.remote.model.GameModel
+import com.rafagnin.gaming.data.model.GameModel
 
 sealed class GamesListState {
     object Loading : GamesListState()

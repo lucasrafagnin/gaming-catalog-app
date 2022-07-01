@@ -4,12 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rafagnin.gaming.domain.Resource
 import com.rafagnin.gaming.domain.usecase.GetUpcomingGames
 import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState
+import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState.Error
+import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState.GamesLoaded
+import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState.Loading
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,16 +24,17 @@ class UpcomingGamesViewModel @Inject constructor(
         get() = _state
 
     fun getUpcomingGames() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val res = getUpcomingGames.invoke()
-
-            if (res.isSuccessful) {
-                withContext(Dispatchers.Main) {
-                    _state.value = UpcomingGamesState.GamesLoaded(
-                        items = res.body()?.results
-                    )
+        viewModelScope.launch {
+            _state.value = Loading
+            getUpcomingGames.invoke()
+                .collect {
+                    when (it) {
+                        is Resource.Success -> _state.value = GamesLoaded(
+                            items = it.data?.results
+                        )
+                        else -> _state.value = Error
+                    }
                 }
-            }
         }
     }
 }

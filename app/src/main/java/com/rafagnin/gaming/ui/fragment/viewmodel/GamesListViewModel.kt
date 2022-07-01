@@ -25,13 +25,13 @@ class GamesListViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val res = getAllGames.invoke()
 
-            if (res.isSuccessful) {
+            //if (res.isSuccessful) {
                 withContext(Dispatchers.Main) {
                     _state.value = GamesListState.GamesLoaded(
-                        items = res.body()?.results
+                        items = res.results
                     )
                 }
-            }
+            //}
         }
     }
 }

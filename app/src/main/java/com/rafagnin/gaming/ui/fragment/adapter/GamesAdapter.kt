@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.rafagnin.gaming.data.remote.model.GameModel
+import com.rafagnin.gaming.data.model.GameModel
 import com.rafagnin.gaming.databinding.ItemGameBinding
 import javax.inject.Inject
 

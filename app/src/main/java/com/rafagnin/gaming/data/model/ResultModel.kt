@@ -1,4 +1,4 @@
-package com.rafagnin.gaming.data.remote.model
+package com.rafagnin.gaming.data.model
 
 import com.squareup.moshi.Json
 

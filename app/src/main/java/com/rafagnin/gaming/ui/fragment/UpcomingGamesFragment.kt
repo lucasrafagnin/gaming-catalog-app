@@ -18,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class UpcomingGamesFragment : Fragment() {
 
     private lateinit var binding: FragmentUpcomingGamesBinding
+    private lateinit var viewModel: UpcomingGamesViewModel
     private val adapter = UpcomingGamesAdapter()
 
     override fun onCreateView(
@@ -32,9 +33,7 @@ class UpcomingGamesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val viewModel: UpcomingGamesViewModel =
-            ViewModelProvider(requireActivity())[UpcomingGamesViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[UpcomingGamesViewModel::class.java]
         binding.list.adapter = adapter
 
         viewModel.getUpcomingGames()
@@ -47,5 +46,6 @@ class UpcomingGamesFragment : Fragment() {
             binding.loading.gone()
         }
         is UpcomingGamesState.Loading -> binding.loading.show()
+        else -> null
     }
 }

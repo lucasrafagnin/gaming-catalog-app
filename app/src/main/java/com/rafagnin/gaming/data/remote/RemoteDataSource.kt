@@ -8,12 +8,10 @@ import javax.inject.Inject
 class RemoteDataSource @Inject constructor(
     private val gamingService: GamingService
 ) {
-    suspend fun getGames() = flow { emit(gamingService.getGames()) }
+    suspend fun getGames() = gamingService.getGames()
 
-    suspend fun getUpcomingGames(limitDate: String) = flow {
-        emit(gamingService.getUpcomingGames(
-            dates = limitDate,
-            ordering = SortOption.RELEASED.type
-        ))
-    }
+    suspend fun getUpcomingGames(limitDate: String) = gamingService.getUpcomingGames(
+        dates = limitDate,
+        ordering = SortOption.RELEASED.type
+    )
 }
