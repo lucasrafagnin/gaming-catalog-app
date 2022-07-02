@@ -10,10 +10,12 @@ import androidx.lifecycle.lifecycleScope
 import com.rafagnin.gaming.databinding.FragmentUpcomingGamesBinding
 import com.rafagnin.gaming.ext.gone
 import com.rafagnin.gaming.ext.show
+import com.rafagnin.gaming.ui.fragment.action.GamesListAction
 import com.rafagnin.gaming.ui.fragment.adapter.UpcomingGamesAdapter
 import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState
 import com.rafagnin.gaming.ui.fragment.viewmodel.UpcomingGamesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class UpcomingGamesFragment : Fragment() {
@@ -37,16 +39,28 @@ class UpcomingGamesFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity())[UpcomingGamesViewModel::class.java]
         binding.list.adapter = adapter
 
-        viewModel.getUpcomingGames()
         lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
+
+        binding.errorState.retry.setOnClickListener {
+            lifecycleScope.launch {
+                viewModel.actionFlow.emit(GamesListAction.Retry)
+            }
+        }
     }
 
     private fun render(state: UpcomingGamesState) = when (state) {
         is UpcomingGamesState.GamesLoaded -> {
             adapter.update(state.items)
             binding.loading.gone()
+            binding.errorState.root.gone()
         }
-        is UpcomingGamesState.Loading -> binding.loading.show()
-        else -> null
+        is UpcomingGamesState.Loading -> {
+            binding.loading.show()
+            binding.errorState.root.gone()
+        }
+        else -> {
+            binding.loading.gone()
+            binding.errorState.root.show()
+        }
     }
 }
