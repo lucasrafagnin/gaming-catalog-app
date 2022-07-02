@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.rafagnin.gaming.databinding.FragmentAllGamesBinding
 import com.rafagnin.gaming.ext.gone
 import com.rafagnin.gaming.ext.show
@@ -21,6 +22,7 @@ import javax.inject.Inject
 class GamesListFragment : Fragment() {
 
     private lateinit var binding: FragmentAllGamesBinding
+    private lateinit var viewModel: GamesListViewModel
     @Inject lateinit var adapter: GamesAdapter
 
     override fun onCreateView(
@@ -35,12 +37,11 @@ class GamesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val viewModel: GamesListViewModel = ViewModelProvider(requireActivity())[GamesListViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[GamesListViewModel::class.java]
         binding.list.adapter = adapter
 
         viewModel.getGames()
-        viewModel.state.observe(viewLifecycleOwner) { render(it) }
+        lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
     }
 
     private fun render(state: GamesListState) = when (state) {
@@ -49,5 +50,6 @@ class GamesListFragment : Fragment() {
             binding.loading.gone()
         }
         is Loading -> binding.loading.show()
+        else -> null
     }
 }

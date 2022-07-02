@@ -1,15 +1,18 @@
 package com.rafagnin.gaming.ui.fragment.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rafagnin.gaming.domain.Resource
 import com.rafagnin.gaming.domain.usecase.GetAllGames
 import com.rafagnin.gaming.ui.fragment.state.GamesListState
+import com.rafagnin.gaming.ui.fragment.state.GamesListState.Error
+import com.rafagnin.gaming.ui.fragment.state.GamesListState.GamesLoaded
+import com.rafagnin.gaming.ui.fragment.state.GamesListState.Loading
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,21 +20,19 @@ class GamesListViewModel @Inject constructor(
     private val getAllGames: GetAllGames
 ) : ViewModel() {
 
-    private val _state = MutableLiveData<GamesListState>()
-    val state: LiveData<GamesListState>
-        get() = _state
+    private val state: MutableStateFlow<GamesListState> = MutableStateFlow(Loading)
+    val _state: StateFlow<GamesListState> = state
 
-    fun getGames() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val res = getAllGames.invoke()
-
-            //if (res.isSuccessful) {
-                withContext(Dispatchers.Main) {
-                    _state.value = GamesListState.GamesLoaded(
-                        items = res.results
+    fun getGames() = viewModelScope.launch {
+        getAllGames.invoke()
+            .catch { state.value = Error }
+            .collect {
+                when (it) {
+                    is Resource.Success -> state.value = GamesLoaded(
+                        items = it.data?.results
                     )
+                    else -> state.value = Loading
                 }
-            //}
-        }
+            }
     }
 }
