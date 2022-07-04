@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="0dp"
-        android:layout_height="180dp"
+        android:layout_height="240dp"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
         android:paddingEnd="8dp"
         android:paddingBottom="6dp"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="19sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/image"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,33 +52,67 @@
         app:layout_constraintGuide_end="16dp" />
 
     <TextView
-        android:id="@+id/developer_title"
-        android:layout_width="wrap_content"
+        android:id="@+id/description"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Developer"
-        android:textColor="@color/gray"
-        android:textSize="13sp"
+        android:ellipsize="end"
+        android:maxLines="5"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
         app:layout_constraintStart_toStartOf="@id/guide_start"
         app:layout_constraintTop_toBottomOf="@id/name" />
 
     <TextView
-        android:id="@+id/developer_value"
+        android:id="@+id/release_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        tools:text="Ninja Theory"
-        android:textColor="@color/black"
-        android:textSize="15sp"
+        android:layout_marginTop="16dp"
+        android:text="@string/game_detail_release_title"
+        android:textColor="@color/gray"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@id/guide_start"
-        app:layout_constraintTop_toBottomOf="@id/developer_title" />
+        app:layout_constraintTop_toBottomOf="@id/description" />
+
+    <TextView
+        android:id="@+id/release_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
+        app:layout_constraintStart_toStartOf="@id/guide_start"
+        app:layout_constraintTop_toBottomOf="@id/release_title"
+        tools:text="2020" />
+
+    <TextView
+        android:id="@+id/developer_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/game_detail_developer_title"
+        android:textColor="@color/gray"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@id/guide_start"
+        app:layout_constraintTop_toBottomOf="@id/release_value" />
+
+    <TextView
+        android:id="@+id/developer_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
+        app:layout_constraintStart_toStartOf="@id/guide_start"
+        app:layout_constraintTop_toBottomOf="@id/developer_title"
+        tools:text="Ninja Theory" />
 
     <TextView
         android:id="@+id/platforms_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Platforms"
+        android:text="@string/game_detail_platforms_title"
         android:textColor="@color/gray"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@id/guide_start"
@@ -86,21 +120,21 @@
 
     <TextView
         android:id="@+id/platforms_value"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        tools:text="Xbox, PC"
         android:textColor="@color/black"
-        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
         app:layout_constraintStart_toStartOf="@id/guide_start"
-        app:layout_constraintTop_toBottomOf="@id/platforms_title" />
+        app:layout_constraintTop_toBottomOf="@id/platforms_title"
+        tools:text="Xbox, PC" />
 
     <TextView
         android:id="@+id/website_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Site"
+        android:text="@string/game_detail_website_title"
         android:textColor="@color/gray"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@id/guide_start"
@@ -108,14 +142,14 @@
 
     <TextView
         android:id="@+id/website_value"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        tools:text="www.hellblade.com"
         android:textColor="@color/black"
-        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
         app:layout_constraintStart_toStartOf="@id/guide_start"
-        app:layout_constraintTop_toBottomOf="@id/website_title" />
+        app:layout_constraintTop_toBottomOf="@id/website_title"
+        tools:text="www.hellblade.com" />
 
     <ProgressBar
         android:id="@+id/loading"
