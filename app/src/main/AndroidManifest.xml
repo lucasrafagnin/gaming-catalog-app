@@ -28,7 +28,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:launchMode="singleTop"
-            android:name=".ui.activity.SearchResultsActivity"
+            android:name=".ui.activity.SearchResultActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.searchable"

@@ -9,9 +9,9 @@ class GetAllGames @Inject constructor(
     private val repository: GameRepository
 ) {
 
-    operator fun invoke() = flow {
+    operator fun invoke(query: String? = null) = flow {
         try {
-            emit(Resource.Success(repository.getGames()))
+            emit(Resource.Success(repository.getGames(query)))
         } catch (exception: Exception) {
             emit(Resource.Error("error"))
         }

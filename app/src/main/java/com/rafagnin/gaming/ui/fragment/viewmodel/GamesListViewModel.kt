@@ -33,7 +33,7 @@ class GamesListViewModel @Inject constructor(
         }
     }
 
-    fun getGames() = viewModelScope.launch {
+    private fun getGames() = viewModelScope.launch {
         getAllGames.invoke()
             .catch { state.value = Error }
             .collect {

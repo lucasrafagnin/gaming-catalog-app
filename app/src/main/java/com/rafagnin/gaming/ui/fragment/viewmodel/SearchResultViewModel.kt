@@ -3,12 +3,12 @@ package com.rafagnin.gaming.ui.fragment.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rafagnin.gaming.domain.Resource
-import com.rafagnin.gaming.domain.usecase.GetUpcomingGames
-import com.rafagnin.gaming.ui.fragment.action.GamesListAction
-import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState
-import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState.Error
-import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState.GamesLoaded
-import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState.Loading
+import com.rafagnin.gaming.domain.usecase.GetAllGames
+import com.rafagnin.gaming.ui.activity.state.SearchResultState
+import com.rafagnin.gaming.ui.activity.state.SearchResultState.Error
+import com.rafagnin.gaming.ui.activity.state.SearchResultState.GamesLoaded
+import com.rafagnin.gaming.ui.activity.state.SearchResultState.Loading
+import com.rafagnin.gaming.ui.fragment.action.SearchResultAction
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,27 +18,26 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UpcomingGamesViewModel @Inject constructor(
-    private val getUpcomingGames: GetUpcomingGames
+class SearchResultViewModel @Inject constructor(
+    private val getAllGames: GetAllGames
 ) : ViewModel() {
 
-    val actionFlow = MutableSharedFlow<GamesListAction>()
-    private val state: MutableStateFlow<UpcomingGamesState> = MutableStateFlow(Loading)
-    val _state: StateFlow<UpcomingGamesState> = state
+    val actionFlow = MutableSharedFlow<SearchResultAction>()
+    private val state: MutableStateFlow<SearchResultState> = MutableStateFlow(Loading)
+    val _state: StateFlow<SearchResultState> = state
 
     init {
-        getUpcomingGames()
         viewModelScope.launch {
             handleActions()
         }
     }
 
-    private fun getUpcomingGames() = viewModelScope.launch {
-        getUpcomingGames.invoke()
+    private fun getGames(text: String) = viewModelScope.launch {
+        getAllGames.invoke(query = text)
             .catch { state.value = Error }
             .collect {
                 when (it) {
-                    is Resource.Success -> state.value = GamesLoaded(it.data)
+                    is Resource.Success -> state.value = GamesLoaded(it.data?.results)
                     is Resource.Loading -> state.value = Loading
                     is Resource.Error -> state.value = Error
                 }
@@ -48,9 +47,9 @@ class UpcomingGamesViewModel @Inject constructor(
     private suspend fun handleActions() {
         actionFlow.collect {
             when (it) {
-                GamesListAction.Retry -> {
+                is SearchResultAction.Query -> {
                     state.value = Loading
-                    getUpcomingGames()
+                    getGames(it.text)
                 }
             }
         }

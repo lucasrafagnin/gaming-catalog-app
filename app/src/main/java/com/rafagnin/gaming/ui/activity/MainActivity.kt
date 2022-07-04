@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             searchManager.getSearchableInfo(
                 ComponentName(
                     this,
-                    SearchResultsActivity::class.java
+                    SearchResultActivity::class.java
                 )
             )
         )

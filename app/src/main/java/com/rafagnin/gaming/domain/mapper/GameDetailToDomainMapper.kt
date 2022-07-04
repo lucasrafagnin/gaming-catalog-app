@@ -1,6 +1,10 @@
 package com.rafagnin.gaming.domain.mapper
 
-import com.rafagnin.gaming.data.model.*
+import com.rafagnin.gaming.data.model.DeveloperModel
+import com.rafagnin.gaming.data.model.GameModel
+import com.rafagnin.gaming.data.model.GenreModel
+import com.rafagnin.gaming.data.model.PlatformResult
+import com.rafagnin.gaming.data.model.TagModel
 import com.rafagnin.gaming.domain.model.UIGameDetailModel
 import javax.inject.Inject
 
@@ -9,8 +13,8 @@ class GameDetailToDomainMapper @Inject constructor() {
     fun map(it: GameModel) = UIGameDetailModel(
         name = it.name,
         image = it.image,
-        website = it.website.orEmpty(),
-        description = it.description.orEmpty(),
+        website = it.website,
+        description = it.description,
         releaseDate = it.releasedDate,
         score = it.metacritic,
         tags = mapTags(it.tags),
@@ -19,9 +23,9 @@ class GameDetailToDomainMapper @Inject constructor() {
         genresDescription = mapGenres(it.genres)
     )
 
-    private fun mapTags(models: List<TagModel>) = models
-        .map { it.slug }
-        .take(12)
+    private fun mapTags(models: List<TagModel>?) = models
+        ?.map { it.slug }
+        ?.take(12)
 
     private fun mapPlatforms(models: List<PlatformResult>?) = models
         ?.map { it.platform }

@@ -41,7 +41,7 @@ class UpcomingGamesAdapter @Inject constructor() : RecyclerView.Adapter<Upcoming
             }
             view.name.text = item.name
             view.day.text = item.day
-            view.month.text = item.month.uppercase()
+            view.month.text = item.month?.uppercase()
             view.root.setOnClickListener {
                 action.invoke(item.id)
             }

@@ -16,7 +16,8 @@ class GameToDomainMapper @Inject constructor() {
         month = mapDate(it.releasedDate, "MMM"),
     )
 
-    private fun mapDate(date: String, newFormat: String): String {
+    private fun mapDate(date: String?, newFormat: String): String? {
+        if (date == null) return null
         val formatOld = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val formatNew = SimpleDateFormat(newFormat, Locale.getDefault())
         val formatted = formatOld.parse(date)
