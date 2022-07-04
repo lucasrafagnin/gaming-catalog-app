@@ -3,6 +3,7 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs")
     kotlin("android")
     kotlin("kapt")
 }

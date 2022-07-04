@@ -38,9 +38,7 @@ class GamesListViewModel @Inject constructor(
             .catch { state.value = Error }
             .collect {
                 when (it) {
-                    is Resource.Success -> state.value = GamesLoaded(
-                        items = it.data?.results
-                    )
+                    is Resource.Success -> state.value = GamesLoaded(it.data?.results)
                     is Resource.Loading -> state.value = Loading
                     is Resource.Error -> state.value = Error
                 }

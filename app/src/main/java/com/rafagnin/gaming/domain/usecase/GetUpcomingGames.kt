@@ -2,18 +2,24 @@ package com.rafagnin.gaming.domain.usecase
 
 import com.rafagnin.gaming.data.repository.GameRepository
 import com.rafagnin.gaming.domain.Resource
+import com.rafagnin.gaming.domain.mapper.GameToDomainMapper
 import kotlinx.coroutines.flow.flow
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 import javax.inject.Inject
 
 class GetUpcomingGames @Inject constructor(
-    private val repository: GameRepository
+    private val repository: GameRepository,
+    private val mapper: GameToDomainMapper
 ) {
 
     operator fun invoke() = flow {
         try {
-            emit(Resource.Success(repository.getUpcomingGames(getNextYearDate())))
+            val games = repository.getUpcomingGames(getNextYearDate())
+                .results
+                .map { mapper.map(it) }
+            emit(Resource.Success(games))
         } catch (exception: Exception) {
             emit(Resource.Error("error"))
         }

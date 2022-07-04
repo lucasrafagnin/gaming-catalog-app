@@ -29,6 +29,7 @@ class AppModule {
 
         val newRequest = original
             .newBuilder()
+            .addHeader("Accept-Encoding", "identity")
             .url(url)
             .build()
         chain.proceed(newRequest)

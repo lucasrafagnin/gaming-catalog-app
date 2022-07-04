@@ -2,5 +2,6 @@
     <string name="app_name">GamingCatalog</string>
     <string name="tab_games">Games</string>
     <string name="tab_upcoming">Upcoming</string>
+    <string name="tab_game_detail">Detail</string>
     <string name="topbar_search">Search</string>
 </resources>

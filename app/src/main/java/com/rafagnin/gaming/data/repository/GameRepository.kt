@@ -8,5 +8,7 @@ class GameRepository @Inject constructor(
 ) {
     suspend fun getGames() = remoteDataSource.getGames()
 
+    suspend fun getGameDetail(id: Long) = remoteDataSource.getGameDetail(id)
+
     suspend fun getUpcomingGames(limitDate: String) = remoteDataSource.getUpcomingGames(limitDate)
 }

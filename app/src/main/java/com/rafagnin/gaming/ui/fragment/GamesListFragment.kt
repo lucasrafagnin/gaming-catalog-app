@@ -1,5 +1,6 @@
 package com.rafagnin.gaming.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.rafagnin.gaming.databinding.FragmentAllGamesBinding
 import com.rafagnin.gaming.ext.gone
 import com.rafagnin.gaming.ext.show
+import com.rafagnin.gaming.ui.activity.GameDetailActivity
 import com.rafagnin.gaming.ui.fragment.action.GamesListAction
 import com.rafagnin.gaming.ui.fragment.adapter.GamesAdapter
 import com.rafagnin.gaming.ui.fragment.state.GamesListState
@@ -25,8 +27,7 @@ class GamesListFragment : Fragment() {
 
     private lateinit var binding: FragmentAllGamesBinding
     private lateinit var viewModel: GamesListViewModel
-    @Inject
-    lateinit var adapter: GamesAdapter
+    @Inject lateinit var adapter: GamesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +55,7 @@ class GamesListFragment : Fragment() {
 
     private fun render(state: GamesListState) = when (state) {
         is GamesLoaded -> {
-            adapter.update(state.items)
+            adapter.update(state.items) { openDetailScreen(it) }
             binding.list.show()
             binding.loading.gone()
             binding.errorState.root.gone()
@@ -69,5 +70,11 @@ class GamesListFragment : Fragment() {
             binding.loading.gone()
             binding.errorState.root.show()
         }
+    }
+
+    private fun openDetailScreen(id: Long) {
+        val intent = Intent(context, GameDetailActivity::class.java)
+        intent.putExtra(GameDetailActivity.ID_EXTRA, id)
+        startActivity(intent)
     }
 }
