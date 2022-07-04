@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import coil.load
+import com.google.android.material.chip.Chip
 import com.rafagnin.gaming.databinding.ActivityDetailBinding
 import com.rafagnin.gaming.domain.model.UIGameDetailModel
 import com.rafagnin.gaming.ext.gone
@@ -39,12 +40,15 @@ class GameDetailActivity : AppCompatActivity() {
         is GameDetailState.Loaded -> {
             setupView(state.game)
             binding.loading.gone()
+            binding.contentGroup.show()
         }
         is GameDetailState.Loading -> {
             binding.loading.show()
+            binding.contentGroup.gone()
         }
         else -> {
             binding.loading.gone()
+            binding.contentGroup.gone()
         }
     }
 
@@ -60,5 +64,10 @@ class GameDetailActivity : AppCompatActivity() {
         binding.websiteValue.text = game?.website
         binding.platformsValue.text = game?.platformsDescription
         binding.genreValue.text = game?.genresDescription
+        game?.tags?.forEach {
+            val chip = Chip(this)
+            chip.text = it
+            binding.tagsGroup.addView(chip)
+        }
     }
 }

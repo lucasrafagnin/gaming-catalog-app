@@ -13,10 +13,15 @@ class GameDetailToDomainMapper @Inject constructor() {
         description = it.description.orEmpty(),
         releaseDate = it.releasedDate,
         score = it.metacritic,
+        tags = mapTags(it.tags),
         developersDescription = mapDevelopers(it.developers),
         platformsDescription = mapPlatforms(it.platforms),
         genresDescription = mapGenres(it.genres)
     )
+
+    private fun mapTags(models: List<TagModel>) = models
+        .map { it.slug }
+        .take(12)
 
     private fun mapPlatforms(models: List<PlatformResult>?) = models
         ?.map { it.platform }
