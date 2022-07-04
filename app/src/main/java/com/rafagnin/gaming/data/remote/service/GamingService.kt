@@ -9,9 +9,12 @@ import retrofit2.http.Query
 interface GamingService {
 
     @GET("api/games")
-    suspend fun getGames(
+    suspend fun searchGames(
         @Query("search") search: String?
     ): ResultModel
+
+    @GET("api/games")
+    suspend fun getGames(): ResultModel
 
     @GET("api/games/{id}")
     suspend fun getGameDetail(

@@ -6,7 +6,9 @@ import javax.inject.Inject
 class GameRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) {
-    suspend fun getGames(query: String?) = remoteDataSource.getGames(query)
+    suspend fun searchGames(query: String) = remoteDataSource.searchGames(query)
+
+    suspend fun getGames() = remoteDataSource.getGames()
 
     suspend fun getGameDetail(id: Long) = remoteDataSource.getGameDetail(id)
 

@@ -3,7 +3,7 @@ package com.rafagnin.gaming.ui.fragment.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rafagnin.gaming.domain.Resource
-import com.rafagnin.gaming.domain.usecase.GetAllGames
+import com.rafagnin.gaming.domain.usecase.SearchGames
 import com.rafagnin.gaming.ui.activity.state.SearchResultState
 import com.rafagnin.gaming.ui.activity.state.SearchResultState.Error
 import com.rafagnin.gaming.ui.activity.state.SearchResultState.GamesLoaded
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchResultViewModel @Inject constructor(
-    private val getAllGames: GetAllGames
+    private val searchGames: SearchGames
 ) : ViewModel() {
 
     val actionFlow = MutableSharedFlow<SearchResultAction>()
@@ -33,7 +33,7 @@ class SearchResultViewModel @Inject constructor(
     }
 
     private fun getGames(text: String) = viewModelScope.launch {
-        getAllGames.invoke(query = text)
+        searchGames.invoke(query = text)
             .catch { state.value = Error }
             .collect {
                 when (it) {
