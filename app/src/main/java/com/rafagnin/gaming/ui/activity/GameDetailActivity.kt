@@ -53,10 +53,12 @@ class GameDetailActivity : AppCompatActivity() {
             crossfade(true)
         }
         binding.name.text = game?.name
+        binding.score.text = game?.score.toString()
         binding.releaseValue.text = game?.releaseDate
         binding.description.text = game?.description
         binding.developerValue.text = game?.developersDescription
         binding.websiteValue.text = game?.website
         binding.platformsValue.text = game?.platformsDescription
+        binding.genreValue.text = game?.genresDescription
     }
 }

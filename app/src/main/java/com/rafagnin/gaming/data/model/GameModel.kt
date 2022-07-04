@@ -8,6 +8,7 @@ data class GameModel(
     @Json(name = "description_raw") val description: String?,
     @Json(name = "website") val website: String?,
     @Json(name = "background_image") val image: String,
+    @Json(name = "metacritic") val metacritic: Int,
     @Json(name = "released") val releasedDate: String,
     @Json(name = "platforms") val platforms: List<PlatformResult>?,
     @Json(name = "genres") val genres: List<GenreModel>?,

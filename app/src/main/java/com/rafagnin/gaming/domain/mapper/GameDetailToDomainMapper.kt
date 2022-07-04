@@ -12,6 +12,7 @@ class GameDetailToDomainMapper @Inject constructor() {
         website = it.website.orEmpty(),
         description = it.description.orEmpty(),
         releaseDate = it.releasedDate,
+        score = it.metacritic,
         developersDescription = mapDevelopers(it.developers),
         platformsDescription = mapPlatforms(it.platforms),
         genresDescription = mapGenres(it.genres)

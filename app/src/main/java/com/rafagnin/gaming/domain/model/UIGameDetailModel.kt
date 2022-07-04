@@ -6,6 +6,7 @@ data class UIGameDetailModel(
     val website: String,
     val description: String,
     val releaseDate: String,
+    val score: Int,
     val developersDescription: String?,
     val platformsDescription: String?,
     val genresDescription: String?,
