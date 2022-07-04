@@ -10,4 +10,6 @@
     <string name="game_detail_developer_title">Developer</string>
     <string name="game_detail_platforms_title">Platforms</string>
     <string name="game_detail_website_title">Site</string>
+
+    <string name="search_hint">Search a game</string>
 </resources>

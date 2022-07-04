@@ -26,6 +26,16 @@
         <activity
             android:name=".ui.activity.GameDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:launchMode="singleTop"
+            android:name=".ui.activity.SearchResultsActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
     </application>
-
 </manifest>
