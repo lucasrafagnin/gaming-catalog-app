@@ -27,9 +27,10 @@
             android:name=".ui.activity.GameDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:launchMode="singleTop"
             android:name=".ui.activity.SearchResultActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:parentActivityName=".ui.activity.MainActivity">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />

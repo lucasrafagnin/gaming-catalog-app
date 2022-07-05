@@ -6,6 +6,7 @@ sealed class SearchResultState {
     object Error : SearchResultState()
     object Loading : SearchResultState()
     data class GamesLoaded(
+        val query: String,
         val items: List<GameModel>?
     ) : SearchResultState()
 }

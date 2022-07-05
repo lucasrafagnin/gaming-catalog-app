@@ -1,4 +1,4 @@
-package com.rafagnin.gaming.ui.fragment.viewmodel
+package com.rafagnin.gaming.ui.activity.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -37,7 +37,7 @@ class SearchResultViewModel @Inject constructor(
             .catch { state.value = Error }
             .collect {
                 when (it) {
-                    is Resource.Success -> state.value = GamesLoaded(it.data?.results)
+                    is Resource.Success -> state.value = GamesLoaded(text, it.data?.results)
                     is Resource.Loading -> state.value = Loading
                     is Resource.Error -> state.value = Error
                 }
