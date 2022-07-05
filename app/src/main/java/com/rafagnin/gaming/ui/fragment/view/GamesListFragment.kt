@@ -1,4 +1,4 @@
-package com.rafagnin.gaming.ui.fragment
+package com.rafagnin.gaming.ui.fragment.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,57 +8,65 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.rafagnin.gaming.databinding.FragmentUpcomingGamesBinding
+import com.rafagnin.gaming.databinding.FragmentAllGamesBinding
 import com.rafagnin.gaming.ext.gone
 import com.rafagnin.gaming.ext.show
-import com.rafagnin.gaming.ui.activity.GameDetailActivity
+import com.rafagnin.gaming.ui.activity.view.GameDetailActivity
 import com.rafagnin.gaming.ui.fragment.action.GamesListAction
-import com.rafagnin.gaming.ui.fragment.action.GamesListAction.Retry
-import com.rafagnin.gaming.ui.fragment.adapter.UpcomingGamesAdapter
-import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState
-import com.rafagnin.gaming.ui.fragment.viewmodel.UpcomingGamesViewModel
+import com.rafagnin.gaming.ui.fragment.adapter.GamesAdapter
+import com.rafagnin.gaming.ui.fragment.state.GamesListState
+import com.rafagnin.gaming.ui.fragment.state.GamesListState.GamesLoaded
+import com.rafagnin.gaming.ui.fragment.state.GamesListState.Loading
+import com.rafagnin.gaming.ui.fragment.viewmodel.GamesListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class UpcomingGamesFragment : Fragment() {
+class GamesListFragment : Fragment() {
 
-    private lateinit var binding: FragmentUpcomingGamesBinding
-    private lateinit var viewModel: UpcomingGamesViewModel
-    @Inject lateinit var adapter: UpcomingGamesAdapter
+    private lateinit var binding: FragmentAllGamesBinding
+    private lateinit var viewModel: GamesListViewModel
+    @Inject lateinit var adapter: GamesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentUpcomingGamesBinding.inflate(inflater, container, false)
+        val binding = FragmentAllGamesBinding.inflate(inflater, container, false)
         this.binding = binding
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[UpcomingGamesViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[GamesListViewModel::class.java]
         binding.list.adapter = adapter
 
         lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
 
-        binding.errorState.retry.setOnClickListener { click(Retry) }
+        binding.errorState.retry.setOnClickListener {
+            lifecycleScope.launch {
+                viewModel.actionFlow.emit(GamesListAction.Retry)
+            }
+        }
     }
 
-    private fun render(state: UpcomingGamesState) = when (state) {
-        is UpcomingGamesState.GamesLoaded -> {
+    private fun render(state: GamesListState) = when (state) {
+        is GamesLoaded -> {
             adapter.update(state.items) { openDetailScreen(it) }
+            binding.list.show()
             binding.loading.gone()
             binding.errorState.root.gone()
         }
-        is UpcomingGamesState.Loading -> {
+        is Loading -> {
+            binding.list.gone()
             binding.loading.show()
             binding.errorState.root.gone()
         }
         else -> {
+            binding.list.gone()
             binding.loading.gone()
             binding.errorState.root.show()
         }
@@ -68,11 +76,5 @@ class UpcomingGamesFragment : Fragment() {
         val intent = Intent(context, GameDetailActivity::class.java)
         intent.putExtra(GameDetailActivity.ID_EXTRA, id)
         startActivity(intent)
-    }
-
-    private fun click(action: GamesListAction) {
-        lifecycleScope.launch {
-            viewModel.actionFlow.emit(action)
-        }
     }
 }

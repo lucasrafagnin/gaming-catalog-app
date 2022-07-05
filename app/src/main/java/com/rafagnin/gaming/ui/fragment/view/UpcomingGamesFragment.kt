@@ -1,4 +1,4 @@
-package com.rafagnin.gaming.ui.fragment
+package com.rafagnin.gaming.ui.fragment.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,65 +8,57 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.rafagnin.gaming.databinding.FragmentProfileBinding
+import com.rafagnin.gaming.databinding.FragmentUpcomingGamesBinding
 import com.rafagnin.gaming.ext.gone
 import com.rafagnin.gaming.ext.show
-import com.rafagnin.gaming.ui.activity.GameDetailActivity
+import com.rafagnin.gaming.ui.activity.view.GameDetailActivity
 import com.rafagnin.gaming.ui.fragment.action.GamesListAction
-import com.rafagnin.gaming.ui.fragment.adapter.GamesAdapter
-import com.rafagnin.gaming.ui.fragment.state.ProfileState
-import com.rafagnin.gaming.ui.fragment.state.ProfileState.GamesLoaded
-import com.rafagnin.gaming.ui.fragment.state.ProfileState.Loading
-import com.rafagnin.gaming.ui.fragment.viewmodel.ProfileViewModel
+import com.rafagnin.gaming.ui.fragment.action.GamesListAction.Retry
+import com.rafagnin.gaming.ui.fragment.adapter.UpcomingGamesAdapter
+import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState
+import com.rafagnin.gaming.ui.fragment.viewmodel.UpcomingGamesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment() {
+class UpcomingGamesFragment : Fragment() {
 
-    private lateinit var binding: FragmentProfileBinding
-    private lateinit var viewModel: ProfileViewModel
-    @Inject lateinit var adapter: GamesAdapter
+    private lateinit var binding: FragmentUpcomingGamesBinding
+    private lateinit var viewModel: UpcomingGamesViewModel
+    @Inject lateinit var adapter: UpcomingGamesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentProfileBinding.inflate(inflater, container, false)
+        val binding = FragmentUpcomingGamesBinding.inflate(inflater, container, false)
         this.binding = binding
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[UpcomingGamesViewModel::class.java]
         binding.list.adapter = adapter
 
         lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
 
-        binding.errorState.retry.setOnClickListener {
-            lifecycleScope.launch {
-                viewModel.actionFlow.emit(GamesListAction.Retry)
-            }
-        }
+        binding.errorState.retry.setOnClickListener { click(Retry) }
     }
 
-    private fun render(state: ProfileState) = when (state) {
-        is GamesLoaded -> {
+    private fun render(state: UpcomingGamesState) = when (state) {
+        is UpcomingGamesState.GamesLoaded -> {
             adapter.update(state.items) { openDetailScreen(it) }
-            binding.list.show()
             binding.loading.gone()
             binding.errorState.root.gone()
         }
-        is Loading -> {
-            binding.list.gone()
+        is UpcomingGamesState.Loading -> {
             binding.loading.show()
             binding.errorState.root.gone()
         }
         else -> {
-            binding.list.gone()
             binding.loading.gone()
             binding.errorState.root.show()
         }
@@ -76,5 +68,11 @@ class ProfileFragment : Fragment() {
         val intent = Intent(context, GameDetailActivity::class.java)
         intent.putExtra(GameDetailActivity.ID_EXTRA, id)
         startActivity(intent)
+    }
+
+    private fun click(action: GamesListAction) {
+        lifecycleScope.launch {
+            viewModel.actionFlow.emit(action)
+        }
     }
 }

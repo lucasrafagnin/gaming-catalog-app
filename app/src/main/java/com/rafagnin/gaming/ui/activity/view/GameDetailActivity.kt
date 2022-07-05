@@ -1,4 +1,4 @@
-package com.rafagnin.gaming.ui.activity
+package com.rafagnin.gaming.ui.activity.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

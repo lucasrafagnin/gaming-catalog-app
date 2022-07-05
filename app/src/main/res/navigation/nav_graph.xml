@@ -6,16 +6,16 @@
 
     <fragment
         android:id="@+id/games_list_fragment"
-        android:name="com.rafagnin.gaming.ui.fragment.GamesListFragment"
+        android:name="com.rafagnin.gaming.ui.fragment.view.GamesListFragment"
         android:label="@string/tab_games" />
 
     <fragment
         android:id="@+id/upcoming_games_fragment"
-        android:name="com.rafagnin.gaming.ui.fragment.UpcomingGamesFragment"
+        android:name="com.rafagnin.gaming.ui.fragment.view.UpcomingGamesFragment"
         android:label="@string/tab_upcoming" />
 
     <fragment
         android:id="@+id/profile_fragment"
-        android:name="com.rafagnin.gaming.ui.fragment.ProfileFragment"
+        android:name="com.rafagnin.gaming.ui.fragment.view.ProfileFragment"
         android:label="@string/tab_profile" />
 </navigation>

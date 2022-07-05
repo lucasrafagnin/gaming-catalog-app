@@ -1,4 +1,4 @@
-package com.rafagnin.gaming.ui.activity
+package com.rafagnin.gaming.ui.activity.view
 
 import android.app.SearchManager
 import android.content.ComponentName
