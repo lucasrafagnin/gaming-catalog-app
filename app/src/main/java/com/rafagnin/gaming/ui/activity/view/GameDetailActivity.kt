@@ -1,6 +1,8 @@
 package com.rafagnin.gaming.ui.activity.view
 
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -38,17 +40,17 @@ class GameDetailActivity : AppCompatActivity() {
 
     private fun render(state: GameDetailState) = when (state) {
         is GameDetailState.Loaded -> {
-            setupView(state.game)
             binding.loading.gone()
-            binding.contentGroup.show()
+            binding.content.show()
+            setupView(state.game)
         }
         is GameDetailState.Loading -> {
             binding.loading.show()
-            binding.contentGroup.gone()
+            binding.content.gone()
         }
         else -> {
             binding.loading.gone()
-            binding.contentGroup.gone()
+            binding.content.gone()
         }
     }
 
@@ -56,18 +58,33 @@ class GameDetailActivity : AppCompatActivity() {
         binding.image.load(game?.image) {
             crossfade(true)
         }
-        binding.name.text = game?.name
-        binding.score.text = game?.score.toString()
-        binding.releaseValue.text = game?.releaseDate
-        binding.description.text = game?.description
-        binding.developerValue.text = game?.developersDescription
-        binding.websiteValue.text = game?.website
-        binding.platformsValue.text = game?.platformsDescription
-        binding.genreValue.text = game?.genresDescription
+        setText(game?.name, binding.name)
+        setText(game?.releaseDate, binding.releaseValue, binding.releaseTitle)
+        setText(game?.description, binding.description)
+        setText(game?.developersDescription, binding.developerValue, binding.developerTitle)
+        setText(game?.website, binding.websiteValue, binding.websiteTitle)
+        setText(game?.platformsDescription, binding.platformsValue, binding.platformsTitle)
+        setText(game?.genresDescription, binding.genreValue, binding.genreTitle)
+        game?.score?.let { setText(it.toString(), binding.score) } ?: binding.score.gone()
         game?.tags?.forEach {
             val chip = Chip(this)
             chip.text = it
             binding.tagsGroup.addView(chip)
+        }
+    }
+
+    private fun setText(
+        text: String?,
+        view: TextView,
+        parentView: View? = null,
+    ) {
+        if (!text.isNullOrEmpty()) {
+            view.show()
+            view.text = text
+            parentView?.show()
+        } else {
+            view.gone()
+            parentView?.gone()
         }
     }
 }

@@ -46,6 +46,6 @@ class GameDetailToDomainMapper @Inject constructor() {
             result += if (index == 0) s
             else ", $s"
         }
-        return result
+        return if (result == "") null else result
     }
 }
