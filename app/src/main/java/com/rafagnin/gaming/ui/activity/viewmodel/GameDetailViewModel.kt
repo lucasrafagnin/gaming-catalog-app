@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rafagnin.gaming.domain.Resource
 import com.rafagnin.gaming.domain.usecase.GetGameDetail
-import com.rafagnin.gaming.ui.fragment.state.GameDetailState
-import com.rafagnin.gaming.ui.fragment.state.GameDetailState.Error
-import com.rafagnin.gaming.ui.fragment.state.GameDetailState.Loaded
-import com.rafagnin.gaming.ui.fragment.state.GameDetailState.Loading
+import com.rafagnin.gaming.ui.activity.state.GameDetailState
+import com.rafagnin.gaming.ui.activity.state.GameDetailState.Error
+import com.rafagnin.gaming.ui.activity.state.GameDetailState.Loaded
+import com.rafagnin.gaming.ui.activity.state.GameDetailState.Loading
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

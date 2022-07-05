@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.games_list_fragment,
                 R.id.upcoming_games_fragment,
+                R.id.profile_fragment,
             )
         )
         toolbar.setupWithNavController(navHostFragment.navController, appBarConfiguration)
@@ -67,6 +68,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.all_games -> navHostFragment.navController.navigate(R.id.games_list_fragment)
                 R.id.upcoming_games -> navHostFragment.navController.navigate(R.id.upcoming_games_fragment)
+                R.id.profile -> navHostFragment.navController.navigate(R.id.profile_fragment)
             }
             true
         }

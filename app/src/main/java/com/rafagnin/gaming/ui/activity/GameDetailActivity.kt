@@ -11,7 +11,7 @@ import com.rafagnin.gaming.domain.model.UIGameDetailModel
 import com.rafagnin.gaming.ext.gone
 import com.rafagnin.gaming.ext.show
 import com.rafagnin.gaming.ui.activity.viewmodel.GameDetailViewModel
-import com.rafagnin.gaming.ui.fragment.state.GameDetailState
+import com.rafagnin.gaming.ui.activity.state.GameDetailState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

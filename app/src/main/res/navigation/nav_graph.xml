@@ -13,4 +13,9 @@
         android:id="@+id/upcoming_games_fragment"
         android:name="com.rafagnin.gaming.ui.fragment.UpcomingGamesFragment"
         android:label="@string/tab_upcoming" />
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.rafagnin.gaming.ui.fragment.ProfileFragment"
+        android:label="@string/tab_profile" />
 </navigation>

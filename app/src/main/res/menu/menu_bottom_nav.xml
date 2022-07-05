@@ -10,4 +10,9 @@
         android:id="@+id/upcoming_games"
         android:icon="@drawable/ic_bottom_upcoming"
         android:title="@string/tab_upcoming"/>
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_bottom_profile"
+        android:title="@string/tab_profile"/>
 </menu>

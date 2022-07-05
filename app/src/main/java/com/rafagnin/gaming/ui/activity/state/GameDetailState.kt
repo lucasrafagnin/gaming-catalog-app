@@ -1,4 +1,4 @@
-package com.rafagnin.gaming.ui.fragment.state
+package com.rafagnin.gaming.ui.activity.state
 
 import com.rafagnin.gaming.domain.model.UIGameDetailModel
 
