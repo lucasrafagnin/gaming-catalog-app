@@ -1,5 +1,6 @@
 package com.rafagnin.gaming.domain.mapper
 
+import com.rafagnin.gaming.R
 import com.rafagnin.gaming.data.model.DeveloperModel
 import com.rafagnin.gaming.data.model.GameModel
 import com.rafagnin.gaming.data.model.GenreModel
@@ -17,11 +18,19 @@ class GameDetailToDomainMapper @Inject constructor() {
         description = it.description,
         releaseDate = it.releasedDate,
         score = it.metacritic,
+        scoreBg = getScore(it.metacritic),
         tags = mapTags(it.tags),
         developersDescription = mapDevelopers(it.developers),
         platformsDescription = mapPlatforms(it.platforms),
         genresDescription = mapGenres(it.genres)
     )
+
+    private fun getScore(score: Int?) = when {
+        score == null -> null
+        score >= 75 -> R.drawable.bg_great_score
+        score >= 50 -> R.drawable.bg_average_score
+        else -> R.drawable.bg_poor_score
+    }
 
     private fun mapTags(models: List<TagModel>?) = models
         ?.map { it.slug }

@@ -3,6 +3,7 @@ package com.rafagnin.gaming.ui.activity.view
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -65,11 +66,21 @@ class GameDetailActivity : AppCompatActivity() {
         setText(game?.website, binding.websiteValue, binding.websiteTitle)
         setText(game?.platformsDescription, binding.platformsValue, binding.platformsTitle)
         setText(game?.genresDescription, binding.genreValue, binding.genreTitle)
-        game?.score?.let { setText(it.toString(), binding.score) } ?: binding.score.gone()
+        setScore(game?.score, game?.scoreBg)
         game?.tags?.forEach {
             val chip = Chip(this)
             chip.text = it
             binding.tagsGroup.addView(chip)
+        }
+    }
+
+    private fun setScore(score: Int?, @DrawableRes scoreBg: Int?) {
+        if (score != null && scoreBg != null) {
+            binding.score.show()
+            binding.score.text = score.toString()
+            binding.score.setBackgroundResource(scoreBg)
+        } else {
+            binding.score.gone()
         }
     }
 

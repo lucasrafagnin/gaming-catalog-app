@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bg_average_score.xml" value="0.2185" />
         <entry key="app/src/main/res/drawable/bg_game_cover.xml" value="0.206" />
         <entry key="app/src/main/res/drawable/bg_item_upcoming.xml" value="0.37" />
+        <entry key="app/src/main/res/drawable/bg_poor_score.xml" value="0.2185" />
         <entry key="app/src/main/res/drawable/bg_score.xml" value="0.2905" />
         <entry key="app/src/main/res/drawable/ic_bottom_games.xml" value="0.3765" />
         <entry key="app/src/main/res/drawable/ic_bottom_profile.xml" value="0.237" />
