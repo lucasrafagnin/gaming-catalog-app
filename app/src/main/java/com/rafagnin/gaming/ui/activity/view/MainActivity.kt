@@ -19,9 +19,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: MainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = MainBinding.inflate(layoutInflater)
+        binding = MainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navHostFragment =
@@ -45,6 +47,11 @@ class MainActivity : AppCompatActivity() {
         )
 
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onBackPressed() = with(binding.bottomNavigation) {
+        if (selectedItemId == R.id.all_games) finish()
+        else selectedItemId = R.id.all_games
     }
 
     private fun setupTopBar(toolbar: Toolbar, navHostFragment: NavHostFragment) {
