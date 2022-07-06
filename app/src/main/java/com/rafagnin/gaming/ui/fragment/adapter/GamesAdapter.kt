@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.rafagnin.gaming.data.model.GameModel
 import com.rafagnin.gaming.databinding.ItemGameBinding
+import com.rafagnin.gaming.domain.model.UIGameModel
 import javax.inject.Inject
 
 class GamesAdapter @Inject constructor() : RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
 
-    private val list: MutableList<GameModel> = mutableListOf()
+    private val list: MutableList<UIGameModel> = mutableListOf()
     private lateinit var action: (Long) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
@@ -26,7 +26,7 @@ class GamesAdapter @Inject constructor() : RecyclerView.Adapter<GamesAdapter.Gam
     override fun getItemCount() = list.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun update(items: List<GameModel>?, action: (Long) -> Unit) {
+    fun update(items: List<UIGameModel>?, action: (Long) -> Unit) {
         this.action = action
         this.list.clear()
         this.list.addAll(items.orEmpty())
@@ -34,7 +34,7 @@ class GamesAdapter @Inject constructor() : RecyclerView.Adapter<GamesAdapter.Gam
     }
 
     class GameViewHolder(private val view: ItemGameBinding) : RecyclerView.ViewHolder(view.root) {
-        fun bind(item: GameModel, action: (Long) -> Unit) {
+        fun bind(item: UIGameModel, action: (Long) -> Unit) {
             view.image.load(item.image) {
                 crossfade(true)
             }

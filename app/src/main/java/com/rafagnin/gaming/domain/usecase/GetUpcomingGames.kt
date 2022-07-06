@@ -2,7 +2,7 @@ package com.rafagnin.gaming.domain.usecase
 
 import com.rafagnin.gaming.data.repository.GameRepository
 import com.rafagnin.gaming.domain.Resource
-import com.rafagnin.gaming.domain.mapper.GameToDomainMapper
+import com.rafagnin.gaming.domain.mapper.UpcomingGameToDomainMapper
 import kotlinx.coroutines.flow.flow
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class GetUpcomingGames @Inject constructor(
     private val repository: GameRepository,
-    private val mapper: GameToDomainMapper
+    private val mapper: UpcomingGameToDomainMapper
 ) {
 
     operator fun invoke() = flow {
