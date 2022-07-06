@@ -1,4 +1,4 @@
-package com.rafagnin.gaming.domain.mapper
+package com.rafagnin.gaming.data.mapper
 
 import com.rafagnin.gaming.data.model.GameModel
 import com.rafagnin.gaming.data.model.LocalGameModel
@@ -21,6 +21,12 @@ class GameToDomainMapper @Inject constructor() {
     )
 
     fun map(model: UIGameDetailModel) = LocalGameModel(
+        id = model.id,
+        name = model.name,
+        image = model.image
+    )
+
+    fun map(model: UIGameModel) = LocalGameModel(
         id = model.id,
         name = model.name,
         image = model.image

@@ -1,21 +1,17 @@
 package com.rafagnin.gaming.domain.usecase
 
-import com.rafagnin.gaming.data.repository.GameRepository
 import com.rafagnin.gaming.domain.Resource
-import com.rafagnin.gaming.domain.mapper.GameToDomainMapper
+import com.rafagnin.gaming.domain.data.GameRepository
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GetFavoriteGames @Inject constructor(
-    private val repository: GameRepository,
-    private val mapper: GameToDomainMapper
+    private val repository: GameRepository
 ) {
 
     operator fun invoke() = flow {
         try {
-            val games = repository.getFavoriteGames()
-                .map { mapper.map(it) }
-            emit(Resource.Success(games))
+            emit(Resource.Success(repository.getFavoriteGames()))
         } catch (exception: Exception) {
             emit(Resource.Error("error"))
         }

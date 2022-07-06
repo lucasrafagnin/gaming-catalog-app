@@ -1,4 +1,4 @@
-package com.rafagnin.gaming.domain.mapper
+package com.rafagnin.gaming.data.mapper
 
 import com.rafagnin.gaming.data.model.GameModel
 import com.rafagnin.gaming.domain.model.UIUpcomingGameModel

@@ -1,6 +1,6 @@
 package com.rafagnin.gaming.domain.model
 
-import androidx.annotation.DrawableRes
+import com.rafagnin.gaming.domain.util.ScoreLevel
 
 data class UIGameDetailModel(
     val id: Long,
@@ -10,7 +10,7 @@ data class UIGameDetailModel(
     val description: String?,
     val releaseDate: String?,
     val score: Int?,
-    @DrawableRes val scoreBg: Int?,
+    val scoreBg: ScoreLevel,
     val tags: List<String>?,
     val developersDescription: String?,
     val platformsDescription: String?,

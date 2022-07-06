@@ -1,12 +1,12 @@
-package com.rafagnin.gaming.domain.mapper
+package com.rafagnin.gaming.data.mapper
 
-import com.rafagnin.gaming.R
 import com.rafagnin.gaming.data.model.DeveloperModel
 import com.rafagnin.gaming.data.model.GameModel
 import com.rafagnin.gaming.data.model.GenreModel
 import com.rafagnin.gaming.data.model.PlatformResult
 import com.rafagnin.gaming.data.model.TagModel
 import com.rafagnin.gaming.domain.model.UIGameDetailModel
+import com.rafagnin.gaming.domain.util.ScoreLevel
 import javax.inject.Inject
 
 class GameDetailToDomainMapper @Inject constructor() {
@@ -27,10 +27,10 @@ class GameDetailToDomainMapper @Inject constructor() {
     )
 
     private fun getScore(score: Int?) = when {
-        score == null -> null
-        score >= 75 -> R.drawable.bg_great_score
-        score >= 50 -> R.drawable.bg_average_score
-        else -> R.drawable.bg_poor_score
+        score == null -> ScoreLevel.UNKNOWN
+        score >= 75 -> ScoreLevel.GREAT
+        score >= 50 -> ScoreLevel.AVERAGE
+        else -> ScoreLevel.POOR
     }
 
     private fun mapTags(models: List<TagModel>?) = models

@@ -37,9 +37,9 @@ class SearchResultViewModel @Inject constructor(
             .catch { state.value = Error }
             .collect {
                 when (it) {
-                    is Resource.Success -> state.value = GamesLoaded(text, it.data)
-                    is Resource.Loading -> state.value = Loading
-                    is Resource.Error -> state.value = Error
+                    is com.rafagnin.gaming.domain.Resource.Success -> state.value = GamesLoaded(text, it.data)
+                    is com.rafagnin.gaming.domain.Resource.Loading -> state.value = Loading
+                    is com.rafagnin.gaming.domain.Resource.Error -> state.value = Error
                 }
             }
     }

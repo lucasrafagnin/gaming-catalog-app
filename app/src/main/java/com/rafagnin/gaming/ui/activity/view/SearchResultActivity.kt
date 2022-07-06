@@ -11,9 +11,9 @@ import com.rafagnin.gaming.databinding.ActivityResultSearchBinding
 import com.rafagnin.gaming.ext.gone
 import com.rafagnin.gaming.ext.show
 import com.rafagnin.gaming.ui.activity.state.SearchResultState
+import com.rafagnin.gaming.ui.activity.viewmodel.SearchResultViewModel
 import com.rafagnin.gaming.ui.fragment.action.SearchResultAction
 import com.rafagnin.gaming.ui.fragment.adapter.GamesAdapter
-import com.rafagnin.gaming.ui.activity.viewmodel.SearchResultViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

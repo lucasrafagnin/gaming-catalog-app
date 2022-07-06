@@ -3,18 +3,19 @@ package com.rafagnin.gaming.ui.activity.view
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.google.android.material.chip.Chip
+import com.rafagnin.gaming.R
 import com.rafagnin.gaming.databinding.ActivityDetailBinding
 import com.rafagnin.gaming.domain.model.UIGameDetailModel
+import com.rafagnin.gaming.domain.util.ScoreLevel
 import com.rafagnin.gaming.ext.gone
 import com.rafagnin.gaming.ext.show
-import com.rafagnin.gaming.ui.activity.viewmodel.GameDetailViewModel
 import com.rafagnin.gaming.ui.activity.state.GameDetailState
+import com.rafagnin.gaming.ui.activity.viewmodel.GameDetailViewModel
 import com.rafagnin.gaming.ui.fragment.action.GameDetailAction
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -81,15 +82,16 @@ class GameDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setScore(score: Int?, @DrawableRes scoreBg: Int?) {
-        if (score != null && scoreBg != null) {
-            binding.score.show()
-            binding.score.text = score.toString()
-            binding.score.setBackgroundResource(scoreBg)
-        } else {
-            binding.score.gone()
-        }
-    }
+    private fun setScore(score: Int?, level: ScoreLevel?) = when (level) {
+        ScoreLevel.GREAT -> R.drawable.bg_great_score
+        ScoreLevel.AVERAGE -> R.drawable.bg_average_score
+        ScoreLevel.POOR -> R.drawable.bg_poor_score
+        else -> null
+    }?.also {
+        binding.score.show()
+        binding.score.text = score.toString()
+        binding.score.setBackgroundResource(it)
+    } ?: binding.score.gone()
 
     private fun setText(
         text: String?,
