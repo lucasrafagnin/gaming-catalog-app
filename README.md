@@ -19,8 +19,10 @@ A Gaming Catalog 🎮 app showcase using a modern Android tech-stacks and MVVM a
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Manages UI data and lifecycle aware. Allows data to survive configuration changes such as screen rotations.
 - [ViewBinding](https://developer.android.com/topic/libraries/view-binding) - Bind UI components from layouts to data sources in app using a declarative format rather than programmatically.
 - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android.
+- [Room](https://developer.android.com/topic/libraries/architecture/room) - SQLite object mapping library.
 - [Moshi](https://github.com/square/moshi) - A modern JSON library for Kotlin and Java.
 - [Moshi Converter](https://github.com/square/retrofit/tree/master/retrofit-converters/moshi) - A Converter which uses Moshi for serialization to and from JSON.
+- [Navigation](https://developer.android.com/guide/navigation) - A library that helps navigation between fragments
 - [Coil-kt](https://coil-kt.github.io/coil/) - An image loading library for Android backed by Kotlin Coroutines.
 - [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - For writing Gradle build scripts using Kotlin.
 
