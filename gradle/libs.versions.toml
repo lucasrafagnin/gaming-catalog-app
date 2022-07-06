@@ -15,7 +15,6 @@ navigation = "2.5.0"
 paging = "3.1.1"
 retrofit = "2.9.0"
 room = "2.4.2"
-sandwich = "1.2.5"
 viewModel = "2.5.0"
 
 [libraries]
@@ -39,7 +38,6 @@ retrofitMoshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref
 room = { module = "androidx.room:room-runtime", version.ref = "room" }
 roomCompiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 roomCoroutines = { module = "androidx.room:room-ktx", version.ref = "room" }
-sandwich = { module = "com.github.skydoves:sandwich", version.ref = "sandwich" }
 viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "viewModel" }
 
 [bundles]
