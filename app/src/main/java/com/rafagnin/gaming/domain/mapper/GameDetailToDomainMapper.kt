@@ -49,12 +49,5 @@ class GameDetailToDomainMapper @Inject constructor() {
         ?.map { it.name }
         .run { mapList(this) }
 
-    private fun mapList(items: List<String>?): String? {
-        var result: String? = ""
-        items?.forEachIndexed { index, s ->
-            result += if (index == 0) s
-            else ", $s"
-        }
-        return if (result == "") null else result
-    }
+    private fun mapList(items: List<String>?) = items?.joinToString(", ")
 }
