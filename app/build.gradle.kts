@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.bundles.moshi)
     implementation(libs.bundles.navigation)
     implementation(libs.bundles.retrofit)
+    implementation(libs.bundles.room)
 
     implementation(libs.appCompat)
     implementation(libs.coil)
@@ -66,6 +67,7 @@ dependencies {
     implementation(libs.viewModel)
 
     kapt(libs.hiltCompiler)
+    kapt(libs.roomCompiler)
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.espresso)

@@ -14,6 +14,7 @@ moshiKotlin = "1.13.0"
 navigation = "2.5.0"
 paging = "3.1.1"
 retrofit = "2.9.0"
+room = "2.4.2"
 sandwich = "1.2.5"
 viewModel = "2.5.0"
 
@@ -35,6 +36,9 @@ navigationUI = { module = "androidx.navigation:navigation-ui-ktx", version.ref =
 paging = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofitMoshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }
+room = { module = "androidx.room:room-runtime", version.ref = "room" }
+roomCompiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+roomCoroutines = { module = "androidx.room:room-ktx", version.ref = "room" }
 sandwich = { module = "com.github.skydoves:sandwich", version.ref = "sandwich" }
 viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "viewModel" }
 
@@ -42,4 +46,5 @@ viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref
 moshi = ["moshiAdapter", "moshiKotlin"]
 navigation = ["navigationFragment", "navigationUI"]
 retrofit = ["retrofit", "retrofitMoshi"]
+room = ["room", "roomCoroutines"]
 coroutines = ["coroutinesAndroid", "coroutinesCore"]
