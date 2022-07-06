@@ -27,7 +27,8 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var viewModel: ProfileViewModel
-    @Inject lateinit var adapter: GamesAdapter
+    @Inject
+    lateinit var adapter: GamesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +45,10 @@ class ProfileFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
         binding.list.adapter = adapter
 
-        lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
+        lifecycleScope.launchWhenCreated {
+            viewModel.getGames()
+            viewModel._state.collect { render(it) }
+        }
 
         binding.errorState.retry.setOnClickListener {
             lifecycleScope.launch {

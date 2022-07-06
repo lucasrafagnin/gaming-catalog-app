@@ -15,7 +15,7 @@
     <string name="search_hint">Search a game</string>
     <string name="search_result">Search for: %1$s</string>
 
-    <string name="error_title">Something wrong</string>
+    <string name="error_title">Something went wrong</string>
     <string name="error_description">An error occurred, please try again later</string>
     <string name="error_retry">Try again</string>
 </resources>

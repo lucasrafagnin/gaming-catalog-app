@@ -3,6 +3,7 @@ package com.rafagnin.gaming.domain.model
 import androidx.annotation.DrawableRes
 
 data class UIGameDetailModel(
+    val id: Long,
     val name: String?,
     val image: String?,
     val website: String?,

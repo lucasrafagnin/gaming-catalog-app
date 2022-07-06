@@ -1,6 +1,7 @@
 package com.rafagnin.gaming.data.repository
 
 import com.rafagnin.gaming.data.local.LocalDataSource
+import com.rafagnin.gaming.data.model.LocalGameModel
 import com.rafagnin.gaming.data.remote.RemoteDataSource
 import javax.inject.Inject
 
@@ -9,6 +10,8 @@ class GameRepository @Inject constructor(
     private val localDataSource: LocalDataSource
 ) {
     fun getFavoriteGames() = localDataSource.getFavoriteGames()
+
+    fun favoriteGame(model: LocalGameModel) = localDataSource.favoriteGame(model)
 
     suspend fun searchGames(query: String) = remoteDataSource.searchGames(query)
 

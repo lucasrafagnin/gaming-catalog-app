@@ -15,7 +15,9 @@ import com.rafagnin.gaming.ext.gone
 import com.rafagnin.gaming.ext.show
 import com.rafagnin.gaming.ui.activity.viewmodel.GameDetailViewModel
 import com.rafagnin.gaming.ui.activity.state.GameDetailState
+import com.rafagnin.gaming.ui.fragment.action.GameDetailAction
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class GameDetailActivity : AppCompatActivity() {
@@ -71,6 +73,11 @@ class GameDetailActivity : AppCompatActivity() {
             val chip = Chip(this)
             chip.text = it
             binding.tagsGroup.addView(chip)
+        }
+        binding.favorite.setOnClickListener {
+            lifecycleScope.launch {
+                game?.let { viewModel.actionFlow.emit(GameDetailAction.Favorite(it)) }
+            }
         }
     }
 

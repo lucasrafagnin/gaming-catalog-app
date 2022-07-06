@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/drawable/ic_bottom_profile.xml" value="0.237" />
         <entry key="app/src/main/res/drawable/ic_bottom_upcoming.xml" value="0.237" />
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.192" />
+        <entry key="app/src/main/res/drawable/ic_unfavorite.xml" value="0.3645" />
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_result_search.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/error_state.xml" value="0.37604166666666666" />

@@ -12,6 +12,7 @@ import javax.inject.Inject
 class GameDetailToDomainMapper @Inject constructor() {
 
     fun map(it: GameModel) = UIGameDetailModel(
+        id = it.id,
         name = it.name,
         image = it.image,
         website = it.website,
