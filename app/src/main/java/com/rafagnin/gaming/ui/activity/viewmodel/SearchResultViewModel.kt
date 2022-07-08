@@ -25,6 +25,8 @@ class SearchResultViewModel @Inject constructor(
     private val state: MutableStateFlow<SearchResultState> = MutableStateFlow(Loading)
     val _state: StateFlow<SearchResultState> = state
 
+    private var lastSearch = ""
+
     init {
         viewModelScope.launch {
             handleActions()
@@ -32,6 +34,7 @@ class SearchResultViewModel @Inject constructor(
     }
 
     private fun getGames(text: String) = viewModelScope.launch {
+        lastSearch = text
         when (val games = searchGames.invoke(query = text)) {
             is Resource.Success -> state.value = GamesLoaded(text, games.data)
             is Resource.Loading -> state.value = Loading
@@ -45,6 +48,10 @@ class SearchResultViewModel @Inject constructor(
                 is SearchResultAction.Query -> {
                     state.value = Loading
                     getGames(it.text)
+                }
+                is SearchResultAction.Retry -> {
+                    state.value = Loading
+                    getGames(lastSearch)
                 }
             }
         }

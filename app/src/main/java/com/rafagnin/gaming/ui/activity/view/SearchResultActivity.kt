@@ -36,6 +36,12 @@ class SearchResultActivity : AppCompatActivity(), GamesAdapter.AdapterCallback {
         setupTopBar()
         handleIntent(intent)
         lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
+
+        binding.errorState.retry.setOnClickListener {
+            lifecycleScope.launch {
+                viewModel.actionFlow.emit(SearchResultAction.Retry)
+            }
+        }
     }
 
     override fun onGameClick(id: Long) = openDetailScreen(id)
