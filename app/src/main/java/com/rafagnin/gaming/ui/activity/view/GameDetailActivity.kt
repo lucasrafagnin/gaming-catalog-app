@@ -82,6 +82,7 @@ class GameDetailActivity : AppCompatActivity() {
 
     private fun setFavorite(game: UIGameDetailModel) = with(binding.favorite) {
         setImageResource(if (game.favorite) R.drawable.ic_favorite else R.drawable.ic_unfavorite)
+        setBackgroundResource(R.drawable.bg_favorite)
         setOnClickListener {
             lifecycleScope.launch {
                 game.let { viewModel.actionFlow.emit(GameDetailAction.Favorite(it)) }

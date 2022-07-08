@@ -39,15 +39,17 @@
 
     <ImageButton
         android:id="@+id/favorite"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_unfavorite"
+        android:padding="8dp"
+        android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/bg_favorite"
+        tools:src="@drawable/ic_favorite" />
 
     <TextView
         android:id="@+id/score"
