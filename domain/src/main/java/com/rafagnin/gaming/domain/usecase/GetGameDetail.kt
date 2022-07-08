@@ -7,11 +7,16 @@ import javax.inject.Inject
 
 class GetGameDetail @Inject constructor(
     private val repository: GameRepository,
+    private val isGameFavorite: IsGameFavorite
 ) {
 
     suspend operator fun invoke(id: Long): Resource<UIGameDetailModel> {
         return try {
-            Resource.Success(repository.getGameDetail(id))
+            Resource.Success(
+                repository.getGameDetail(id).copy(
+                    favorite = isGameFavorite.invoke(id).data == true
+                )
+            )
         } catch (exception: Exception) {
             Resource.Error("error")
         }

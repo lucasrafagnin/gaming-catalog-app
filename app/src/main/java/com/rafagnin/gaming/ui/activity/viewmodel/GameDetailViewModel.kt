@@ -36,16 +36,19 @@ class GameDetailViewModel @Inject constructor(
         }
     }
 
-    fun getGameDetail(id: Long) = viewModelScope.launch {
-        when (val detail = getGameDetail.invoke(id)) {
-            is Resource.Success -> state.value = Loaded(detail.data)
+    fun getGameDetail(id: Long) = viewModelScope.launch(Dispatchers.IO) {
+        when (val result = getGameDetail.invoke(id)) {
+            is Resource.Success -> state.value = Loaded(result.data)
             is Resource.Loading -> state.value = Loading
             is Resource.Error -> state.value = Error
         }
     }
 
     private fun favoriteGame(model: UIGameDetailModel) = viewModelScope.launch(Dispatchers.IO) {
-        favoriteGame.invoke(model, !model.favorite)
+        when (val result = favoriteGame.invoke(model, !model.favorite)) {
+            is Resource.Success -> state.value = Loaded(result.data)
+            else -> state.value = Error
+        }
     }
 
     private suspend fun handleActions() {

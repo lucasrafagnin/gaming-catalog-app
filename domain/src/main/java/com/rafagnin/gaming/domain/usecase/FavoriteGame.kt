@@ -9,10 +9,10 @@ class FavoriteGame @Inject constructor(
     private val repository: GameRepository
 ) {
 
-    operator fun invoke(model: UIGameDetailModel, toFavorite: Boolean): Resource<Boolean> {
+    operator fun invoke(model: UIGameDetailModel, toFavorite: Boolean): Resource<UIGameDetailModel> {
         return try {
             repository.favoriteGame(model, toFavorite)
-            Resource.Success(true)
+            Resource.Success(model.copy(favorite = toFavorite))
         } catch (exception: Exception) {
             Resource.Error("error")
         }

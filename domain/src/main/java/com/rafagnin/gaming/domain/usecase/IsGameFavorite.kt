@@ -12,7 +12,7 @@ class IsGameFavorite @Inject constructor(
         return try {
             Resource.Success(repository.isGameFavorite(id))
         } catch (exception: Exception) {
-            Resource.Error("error")
+            Resource.Success(false)
         }
     }
 }

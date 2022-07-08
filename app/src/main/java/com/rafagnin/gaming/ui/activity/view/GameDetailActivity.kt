@@ -60,26 +60,31 @@ class GameDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupView(game: UIGameDetailModel?) {
-        binding.image.load(game?.image) {
+    private fun setupView(game: UIGameDetailModel?) = game?.let {
+        binding.image.load(it.image) {
             crossfade(true)
         }
-        setText(game?.name, binding.name)
-        setText(game?.releaseDate, binding.releaseValue, binding.releaseTitle)
-        setText(game?.description, binding.description)
-        setText(game?.developersDescription, binding.developerValue, binding.developerTitle)
-        setText(game?.website, binding.websiteValue, binding.websiteTitle)
-        setText(game?.platformsDescription, binding.platformsValue, binding.platformsTitle)
-        setText(game?.genresDescription, binding.genreValue, binding.genreTitle)
-        setScore(game?.score, game?.scoreBg)
-        game?.tags?.forEach {
+        setFavorite(game)
+        setText(it.name, binding.name)
+        setText(it.releaseDate, binding.releaseValue, binding.releaseTitle)
+        setText(it.description, binding.description)
+        setText(it.developersDescription, binding.developerValue, binding.developerTitle)
+        setText(it.website, binding.websiteValue, binding.websiteTitle)
+        setText(it.platformsDescription, binding.platformsValue, binding.platformsTitle)
+        setText(it.genresDescription, binding.genreValue, binding.genreTitle)
+        setScore(it.score, it.scoreBg)
+        it.tags?.forEach { tags ->
             val chip = Chip(this)
-            chip.text = it
+            chip.text = tags
             binding.tagsGroup.addView(chip)
         }
-        binding.favorite.setOnClickListener {
+    }
+
+    private fun setFavorite(game: UIGameDetailModel) = with(binding.favorite) {
+        setImageResource(if (game.favorite) R.drawable.ic_favorite else R.drawable.ic_unfavorite)
+        setOnClickListener {
             lifecycleScope.launch {
-                game?.let { viewModel.actionFlow.emit(GameDetailAction.Favorite(it)) }
+                game.let { viewModel.actionFlow.emit(GameDetailAction.Favorite(it)) }
             }
         }
     }
