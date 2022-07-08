@@ -88,6 +88,7 @@ class GameDetailActivity : AppCompatActivity() {
                 game.let { viewModel.actionFlow.emit(GameDetailAction.Favorite(it)) }
             }
         }
+        show()
     }
 
     private fun setScore(score: Int?, level: ScoreLevel?) = when (level) {
