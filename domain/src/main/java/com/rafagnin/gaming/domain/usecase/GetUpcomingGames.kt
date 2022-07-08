@@ -2,7 +2,7 @@ package com.rafagnin.gaming.domain.usecase
 
 import com.rafagnin.gaming.domain.Resource
 import com.rafagnin.gaming.domain.data.GameRepository
-import kotlinx.coroutines.flow.flow
+import com.rafagnin.gaming.domain.model.UIUpcomingGameModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -12,11 +12,11 @@ class GetUpcomingGames @Inject constructor(
     private val repository: GameRepository,
 ) {
 
-    operator fun invoke() = flow {
-        try {
-            emit(Resource.Success(repository.getUpcomingGames(getNextYearDate())))
+    suspend operator fun invoke(): Resource<List<UIUpcomingGameModel>> {
+        return try {
+            Resource.Success(repository.getUpcomingGames(getNextYearDate()))
         } catch (exception: Exception) {
-            emit(Resource.Error("error"))
+            Resource.Error("error")
         }
     }
 

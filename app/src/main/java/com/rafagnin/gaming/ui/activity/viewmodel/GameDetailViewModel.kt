@@ -16,8 +16,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -39,19 +37,15 @@ class GameDetailViewModel @Inject constructor(
     }
 
     fun getGameDetail(id: Long) = viewModelScope.launch {
-        getGameDetail.invoke(id)
-            .catch { state.value = Error }
-            .collect {
-                when (it) {
-                    is Resource.Success -> state.value = Loaded(it.data)
-                    is Resource.Loading -> state.value = Loading
-                    is Resource.Error -> state.value = Error
-                }
-            }
+        when (val detail = getGameDetail.invoke(id)) {
+            is Resource.Success -> state.value = Loaded(detail.data)
+            is Resource.Loading -> state.value = Loading
+            is Resource.Error -> state.value = Error
+        }
     }
 
     private fun favoriteGame(model: UIGameDetailModel) = viewModelScope.launch(Dispatchers.IO) {
-        favoriteGame.invoke(model, !model.favorite).collect()
+        favoriteGame.invoke(model, !model.favorite)
     }
 
     private suspend fun handleActions() {

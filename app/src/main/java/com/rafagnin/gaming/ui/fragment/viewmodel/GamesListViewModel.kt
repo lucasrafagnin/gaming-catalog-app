@@ -13,7 +13,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -34,15 +33,11 @@ class GamesListViewModel @Inject constructor(
     }
 
     private fun getGames() = viewModelScope.launch {
-        getAllGames.invoke()
-            .catch { state.value = Error }
-            .collect {
-                when (it) {
-                    is Resource.Success -> state.value = GamesLoaded(it.data)
-                    is Resource.Loading -> state.value = Loading
-                    is Resource.Error -> state.value = Error
-                }
-            }
+        when (val games = getAllGames.invoke()) {
+            is Resource.Success -> state.value = GamesLoaded(games.data)
+            is Resource.Loading -> state.value = Loading
+            is Resource.Error -> state.value = Error
+        }
     }
 
     private suspend fun handleActions() {
