@@ -19,15 +19,13 @@ import com.rafagnin.gaming.ui.fragment.state.ProfileState.*
 import com.rafagnin.gaming.ui.fragment.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), GamesAdapter.AdapterCallback {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var viewModel: ProfileViewModel
-    @Inject
-    lateinit var adapter: GamesAdapter
+    private lateinit var adapter: GamesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +40,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[ProfileViewModel::class.java]
+        adapter = GamesAdapter(this)
         binding.list.adapter = adapter
 
         lifecycleScope.launchWhenCreated {
@@ -55,9 +54,11 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    override fun onGameClick(id: Long) = openDetailScreen(id)
+
     private fun render(state: ProfileState) = when (state) {
         is GamesLoaded -> {
-            adapter.update(state.items) { openDetailScreen(it) }
+            adapter.update(state.items)
             binding.list.show()
             binding.loading.gone()
             binding.errorState.root.gone()
@@ -70,7 +71,7 @@ class ProfileFragment : Fragment() {
             binding.emptyState.root.gone()
         }
         is Empty -> {
-            adapter.update(null) {}
+            adapter.update(null)
             binding.list.gone()
             binding.loading.gone()
             binding.errorState.root.gone()

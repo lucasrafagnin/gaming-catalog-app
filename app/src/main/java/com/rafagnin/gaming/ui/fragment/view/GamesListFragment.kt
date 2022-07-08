@@ -23,11 +23,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class GamesListFragment : Fragment() {
+class GamesListFragment : Fragment(), GamesAdapter.AdapterCallback {
 
     private lateinit var binding: FragmentAllGamesBinding
     private lateinit var viewModel: GamesListViewModel
-    @Inject lateinit var adapter: GamesAdapter
+    private lateinit var adapter: GamesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +42,7 @@ class GamesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[GamesListViewModel::class.java]
+        adapter = GamesAdapter(this)
         binding.list.adapter = adapter
 
         lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
@@ -53,9 +54,11 @@ class GamesListFragment : Fragment() {
         }
     }
 
+    override fun onGameClick(id: Long) = openDetailScreen(id)
+
     private fun render(state: GamesListState) = when (state) {
         is GamesLoaded -> {
-            adapter.update(state.items) { openDetailScreen(it) }
+            adapter.update(state.items)
             binding.list.show()
             binding.loading.gone()
             binding.errorState.root.gone()

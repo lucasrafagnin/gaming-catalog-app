@@ -16,21 +16,20 @@ import com.rafagnin.gaming.ui.fragment.action.SearchResultAction
 import com.rafagnin.gaming.ui.fragment.adapter.GamesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class SearchResultActivity : AppCompatActivity() {
+class SearchResultActivity : AppCompatActivity(), GamesAdapter.AdapterCallback {
 
     private lateinit var binding: ActivityResultSearchBinding
     private lateinit var viewModel: SearchResultViewModel
-
-    @Inject lateinit var adapter: GamesAdapter
+    private lateinit var adapter: GamesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityResultSearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        adapter = GamesAdapter(this)
         viewModel = ViewModelProvider(this)[SearchResultViewModel::class.java]
         binding.list.adapter = adapter
 
@@ -38,6 +37,8 @@ class SearchResultActivity : AppCompatActivity() {
         handleIntent(intent)
         lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
     }
+
+    override fun onGameClick(id: Long) = openDetailScreen(id)
 
     private fun setupTopBar() {
         setSupportActionBar(binding.toolbar)
@@ -47,7 +48,7 @@ class SearchResultActivity : AppCompatActivity() {
 
     private fun render(state: SearchResultState) = when (state) {
         is SearchResultState.GamesLoaded -> {
-            adapter.update(state.items) { openDetailScreen(it) }
+            adapter.update(state.items)
             binding.toolbar.title = getString(R.string.search_result, state.query)
             binding.list.show()
             binding.loading.gone()

@@ -9,10 +9,11 @@ import com.rafagnin.gaming.databinding.ItemGameBinding
 import com.rafagnin.gaming.domain.model.UIGameModel
 import javax.inject.Inject
 
-class GamesAdapter @Inject constructor() : RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
+class GamesAdapter @Inject constructor(
+    private val callback: AdapterCallback
+) : RecyclerView.Adapter<GamesAdapter.GameViewHolder>() {
 
     private val list: MutableList<UIGameModel> = mutableListOf()
-    private lateinit var action: (Long) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val view = ItemGameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -20,28 +21,31 @@ class GamesAdapter @Inject constructor() : RecyclerView.Adapter<GamesAdapter.Gam
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
-        holder.bind(list[position], action)
+        holder.bind(list[position], callback)
     }
 
     override fun getItemCount() = list.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun update(items: List<UIGameModel>?, action: (Long) -> Unit) {
-        this.action = action
+    fun update(items: List<UIGameModel>?) {
         this.list.clear()
         this.list.addAll(items.orEmpty())
         notifyDataSetChanged()
     }
 
     class GameViewHolder(private val view: ItemGameBinding) : RecyclerView.ViewHolder(view.root) {
-        fun bind(item: UIGameModel, action: (Long) -> Unit) {
+        fun bind(item: UIGameModel, callback: AdapterCallback) {
             view.image.load(item.image) {
                 crossfade(true)
             }
             view.name.text = item.name
             view.root.setOnClickListener {
-                action.invoke(item.id)
+                callback.onGameClick(item.id)
             }
         }
+    }
+
+    interface AdapterCallback {
+        fun onGameClick(id: Long)
     }
 }

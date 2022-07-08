@@ -19,14 +19,13 @@ import com.rafagnin.gaming.ui.fragment.state.UpcomingGamesState
 import com.rafagnin.gaming.ui.fragment.viewmodel.UpcomingGamesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class UpcomingGamesFragment : Fragment() {
+class UpcomingGamesFragment : Fragment(), UpcomingGamesAdapter.AdapterCallback {
 
     private lateinit var binding: FragmentUpcomingGamesBinding
     private lateinit var viewModel: UpcomingGamesViewModel
-    @Inject lateinit var adapter: UpcomingGamesAdapter
+    private lateinit var adapter: UpcomingGamesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +40,7 @@ class UpcomingGamesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[UpcomingGamesViewModel::class.java]
+        adapter = UpcomingGamesAdapter(this)
         binding.list.adapter = adapter
 
         lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
@@ -48,9 +48,11 @@ class UpcomingGamesFragment : Fragment() {
         binding.errorState.retry.setOnClickListener { click(Retry) }
     }
 
+    override fun onGameClick(id: Long) = openDetailScreen(id)
+
     private fun render(state: UpcomingGamesState) = when (state) {
         is UpcomingGamesState.GamesLoaded -> {
-            adapter.update(state.items) { openDetailScreen(it) }
+            adapter.update(state.items)
             binding.loading.gone()
             binding.errorState.root.gone()
         }
