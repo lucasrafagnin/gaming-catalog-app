@@ -73,6 +73,7 @@ class GameDetailActivity : AppCompatActivity() {
         setText(it.platformsDescription, binding.platformsValue, binding.platformsTitle)
         setText(it.genresDescription, binding.genreValue, binding.genreTitle)
         setScore(it.score, it.scoreBg)
+        binding.tagsGroup.removeAllViews()
         it.tags?.forEach { tags ->
             val chip = Chip(this)
             chip.text = tags
