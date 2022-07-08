@@ -5,6 +5,7 @@ import com.rafagnin.gaming.domain.model.UIGameModel
 sealed class ProfileState {
     object Error : ProfileState()
     object Loading : ProfileState()
+    object Empty : ProfileState()
     data class GamesLoaded(
         val items: List<UIGameModel>?
     ) : ProfileState()

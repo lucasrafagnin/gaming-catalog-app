@@ -15,8 +15,7 @@ import com.rafagnin.gaming.ui.activity.view.GameDetailActivity
 import com.rafagnin.gaming.ui.fragment.action.GamesListAction
 import com.rafagnin.gaming.ui.fragment.adapter.GamesAdapter
 import com.rafagnin.gaming.ui.fragment.state.ProfileState
-import com.rafagnin.gaming.ui.fragment.state.ProfileState.GamesLoaded
-import com.rafagnin.gaming.ui.fragment.state.ProfileState.Loading
+import com.rafagnin.gaming.ui.fragment.state.ProfileState.*
 import com.rafagnin.gaming.ui.fragment.viewmodel.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -62,16 +61,26 @@ class ProfileFragment : Fragment() {
             binding.list.show()
             binding.loading.gone()
             binding.errorState.root.gone()
+            binding.emptyState.root.gone()
         }
         is Loading -> {
             binding.list.gone()
             binding.loading.show()
             binding.errorState.root.gone()
+            binding.emptyState.root.gone()
+        }
+        is Empty -> {
+            adapter.update(null) {}
+            binding.list.gone()
+            binding.loading.gone()
+            binding.errorState.root.gone()
+            binding.emptyState.root.show()
         }
         else -> {
             binding.list.gone()
             binding.loading.gone()
             binding.errorState.root.show()
+            binding.emptyState.root.gone()
         }
     }
 

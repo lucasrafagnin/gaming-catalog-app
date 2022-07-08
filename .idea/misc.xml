@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_result_search.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/error_state.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/favorites_empty_state.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_all_games.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_discovery_games.xml" value="0.37604166666666666" />

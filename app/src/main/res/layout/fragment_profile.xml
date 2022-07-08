@@ -23,4 +23,8 @@
         android:id="@+id/error_state"
         layout="@layout/error_state" />
 
+    <include
+        android:id="@+id/empty_state"
+        layout="@layout/favorites_empty_state" />
+
 </FrameLayout>

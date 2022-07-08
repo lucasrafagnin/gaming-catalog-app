@@ -18,4 +18,7 @@
     <string name="error_title">Something went wrong</string>
     <string name="error_description">An error occurred, please try again later</string>
     <string name="error_retry">Try again</string>
+
+    <string name="empty_title">Save your favorite games</string>
+    <string name="empty_description">Your favorites list will be shown here</string>
 </resources>

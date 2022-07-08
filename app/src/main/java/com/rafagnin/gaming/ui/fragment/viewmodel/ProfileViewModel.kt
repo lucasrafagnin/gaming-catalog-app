@@ -39,7 +39,11 @@ class ProfileViewModel @Inject constructor(
             .catch { state.value = Error }
             .collect {
                 when (it) {
-                    is Resource.Success -> state.value = GamesLoaded(it.data)
+                    is Resource.Success -> {
+                        state.value =
+                            if (it.data.isNullOrEmpty()) ProfileState.Empty
+                            else GamesLoaded(it.data)
+                    }
                     is Resource.Loading -> state.value = Loading
                     is Resource.Error -> state.value = Error
                 }
