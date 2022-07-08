@@ -12,11 +12,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:indeterminateTint="@color/black" />
+        style="@style/ProgressBar"
+        android:id="@+id/loading" />
 
     <include
         android:id="@+id/error_state"

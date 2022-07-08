@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/image"
@@ -43,9 +42,9 @@
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
         android:importantForAccessibility="no"
         android:padding="8dp"
-        android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@drawable/bg_favorite"
@@ -97,33 +96,23 @@
 
             <TextView
                 android:id="@+id/description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/TextSubtitle"
                 android:layout_marginTop="16dp"
-                android:ellipsize="end"
                 android:maxLines="5"
-                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
                 app:layout_constraintStart_toStartOf="@id/guide_start"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/release_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                style="@style/TextTitle"
                 android:text="@string/game_detail_release_title"
-                android:textColor="@color/gray"
-                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@id/guide_start"
                 app:layout_constraintTop_toBottomOf="@id/description" />
 
             <TextView
                 android:id="@+id/release_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:textColor="@color/black"
+                style="@style/TextSubtitle"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
                 app:layout_constraintStart_toStartOf="@id/guide_start"
                 app:layout_constraintTop_toBottomOf="@id/release_title"
@@ -131,21 +120,14 @@
 
             <TextView
                 android:id="@+id/genre_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                style="@style/TextTitle"
                 android:text="@string/game_detail_genre_title"
-                android:textColor="@color/gray"
-                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@id/guide_start"
                 app:layout_constraintTop_toBottomOf="@id/release_value" />
 
             <TextView
                 android:id="@+id/genre_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:textColor="@color/black"
+                style="@style/TextSubtitle"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
                 app:layout_constraintStart_toStartOf="@id/guide_start"
                 app:layout_constraintTop_toBottomOf="@id/genre_title"
@@ -153,21 +135,14 @@
 
             <TextView
                 android:id="@+id/developer_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                style="@style/TextTitle"
                 android:text="@string/game_detail_developer_title"
-                android:textColor="@color/gray"
-                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@id/guide_start"
                 app:layout_constraintTop_toBottomOf="@id/genre_value" />
 
             <TextView
                 android:id="@+id/developer_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:textColor="@color/black"
+                style="@style/TextSubtitle"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
                 app:layout_constraintStart_toStartOf="@id/guide_start"
                 app:layout_constraintTop_toBottomOf="@id/developer_title"
@@ -175,21 +150,14 @@
 
             <TextView
                 android:id="@+id/platforms_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                style="@style/TextTitle"
                 android:text="@string/game_detail_platforms_title"
-                android:textColor="@color/gray"
-                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@id/guide_start"
                 app:layout_constraintTop_toBottomOf="@id/developer_value" />
 
             <TextView
                 android:id="@+id/platforms_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:textColor="@color/black"
+                style="@style/TextSubtitle"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
                 app:layout_constraintStart_toStartOf="@id/guide_start"
                 app:layout_constraintTop_toBottomOf="@id/platforms_title"
@@ -197,21 +165,14 @@
 
             <TextView
                 android:id="@+id/website_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                style="@style/TextTitle"
                 android:text="@string/game_detail_website_title"
-                android:textColor="@color/gray"
-                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@id/guide_start"
                 app:layout_constraintTop_toBottomOf="@id/platforms_value" />
 
             <TextView
                 android:id="@+id/website_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:textColor="@color/black"
+                style="@style/TextSubtitle"
                 app:layout_constraintEnd_toEndOf="@id/guide_end"
                 app:layout_constraintStart_toStartOf="@id/guide_start"
                 app:layout_constraintTop_toBottomOf="@id/website_title"
@@ -233,10 +194,7 @@
 
     <ProgressBar
         android:id="@+id/loading"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:indeterminateTint="@color/black"
+        style="@style/ProgressBar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
