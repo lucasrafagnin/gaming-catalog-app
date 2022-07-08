@@ -5,12 +5,13 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.rafagnin.gaming.data.model.LocalGameModel
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface GameDao {
 
     @Query("SELECT * FROM game")
-    fun getAll(): List<LocalGameModel>
+    fun getAll(): Flow<List<LocalGameModel>>
 
     @Insert
     fun insert(vararg games: LocalGameModel)

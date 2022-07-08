@@ -28,12 +28,13 @@ class ProfileViewModel @Inject constructor(
     val _state: StateFlow<ProfileState> = state
 
     init {
+        getGames()
         viewModelScope.launch {
             handleActions()
         }
     }
 
-    fun getGames() = viewModelScope.launch(Dispatchers.IO) {
+    private fun getGames() = viewModelScope.launch(Dispatchers.IO) {
         getFavoriteGames.invoke()
             .catch { state.value = Error }
             .collect {

@@ -46,7 +46,6 @@ class ProfileFragment : Fragment() {
         binding.list.adapter = adapter
 
         lifecycleScope.launchWhenCreated {
-            viewModel.getGames()
             viewModel._state.collect { render(it) }
         }
 
