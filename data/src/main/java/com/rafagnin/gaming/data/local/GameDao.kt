@@ -17,4 +17,7 @@ interface GameDao {
 
     @Delete
     fun delete(game: LocalGameModel)
+
+    @Query("SELECT EXISTS(SELECT * FROM game WHERE id = :id)")
+    fun exist(id: Long): Boolean
 }

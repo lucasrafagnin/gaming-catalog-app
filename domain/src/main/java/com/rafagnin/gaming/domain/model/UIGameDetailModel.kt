@@ -15,4 +15,5 @@ data class UIGameDetailModel(
     val developersDescription: String?,
     val platformsDescription: String?,
     val genresDescription: String?,
+    val favorite: Boolean
 )

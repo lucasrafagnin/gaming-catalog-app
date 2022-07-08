@@ -31,9 +31,8 @@ A Gaming Catalog 🎮 app showcase using a modern Android tech-stacks and MVVM a
 - [Renovate](https://github.com/renovatebot/renovate) - Automated dependency updates.
 - [Codacy](http://codacy.com/) - Automated code reviews in commits and pull requests
 
+## Architecture 🏗️
+![MVVM-with-Kotlin-Coroutines-and-Retrofit](https://user-images.githubusercontent.com/5746225/173910060-ea44be05-e38c-45d3-bd9f-7bd3153b67ce.png)
+
 ## Find this repository useful? ⭐
 __[follow](https://github.com/lucasrafagnin)__ me for my next creations.
-
-## Architecture 🏗️
-
-![MVVM-with-Kotlin-Coroutines-and-Retrofit](https://user-images.githubusercontent.com/5746225/173910060-ea44be05-e38c-45d3-bd9f-7bd3153b67ce.png)

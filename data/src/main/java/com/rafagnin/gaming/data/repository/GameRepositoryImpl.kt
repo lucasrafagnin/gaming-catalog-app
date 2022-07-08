@@ -20,8 +20,12 @@ class GameRepositoryImpl @Inject constructor(
     override fun getFavoriteGames() = localDataSource.getFavoriteGames()
         .map { gameToDomainMapper.map(it) }
 
-    override fun favoriteGame(model: UIGameDetailModel) =
-        localDataSource.favoriteGame(gameToDomainMapper.map(model))
+    override fun isGameFavorite(id: Long) = localDataSource.exist(id)
+
+    override fun favoriteGame(model: UIGameDetailModel, toFavorite: Boolean) {
+        if (toFavorite) localDataSource.add(gameToDomainMapper.map(model))
+        else localDataSource.remove(gameToDomainMapper.map(model))
+    }
 
     override suspend fun searchGames(query: String) = remoteDataSource.searchGames(query)
         .results

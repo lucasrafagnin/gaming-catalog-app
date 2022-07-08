@@ -40,6 +40,8 @@ class GameDetailActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[GameDetailViewModel::class.java]
         viewModel.getGameDetail(detailId)
         lifecycleScope.launchWhenCreated { viewModel._state.collect { render(it) } }
+
+        viewModel._state
     }
 
     private fun render(state: GameDetailState) = when (state) {

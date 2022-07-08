@@ -29,6 +29,7 @@ class GameDetailViewModel @Inject constructor(
 
     private val state: MutableStateFlow<GameDetailState> = MutableStateFlow(Loading)
     val _state: StateFlow<GameDetailState> = state
+
     val actionFlow = MutableSharedFlow<GameDetailAction>()
 
     init {
@@ -50,7 +51,7 @@ class GameDetailViewModel @Inject constructor(
     }
 
     private fun favoriteGame(model: UIGameDetailModel) = viewModelScope.launch(Dispatchers.IO) {
-        favoriteGame.invoke(model).collect()
+        favoriteGame.invoke(model, !model.favorite).collect()
     }
 
     private suspend fun handleActions() {

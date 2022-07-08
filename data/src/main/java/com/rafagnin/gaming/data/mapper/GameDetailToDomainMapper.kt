@@ -23,7 +23,8 @@ class GameDetailToDomainMapper @Inject constructor() {
         tags = mapTags(it.tags),
         developersDescription = mapDevelopers(it.developers),
         platformsDescription = mapPlatforms(it.platforms),
-        genresDescription = mapGenres(it.genres)
+        genresDescription = mapGenres(it.genres),
+        favorite = false
     )
 
     private fun getScore(score: Int?) = when {
