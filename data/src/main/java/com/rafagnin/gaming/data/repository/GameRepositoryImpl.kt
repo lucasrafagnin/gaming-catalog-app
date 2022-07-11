@@ -6,8 +6,8 @@ import com.rafagnin.gaming.data.mapper.GameToDomainMapper
 import com.rafagnin.gaming.data.mapper.UpcomingGameToDomainMapper
 import com.rafagnin.gaming.data.remote.RemoteDataSource
 import com.rafagnin.gaming.domain.data.GameRepository
-import com.rafagnin.gaming.domain.model.UIGameDetailModel
-import com.rafagnin.gaming.domain.model.UIGameModel
+import com.rafagnin.gaming.domain.model.GameDetailModel
+import com.rafagnin.gaming.domain.model.GameModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -20,12 +20,12 @@ class GameRepositoryImpl @Inject constructor(
     private val gameDetailToDomainMapper: GameDetailToDomainMapper
 ) : GameRepository {
 
-    override fun getFavoriteGames(): Flow<List<UIGameModel>> = localDataSource.getFavoriteGames()
+    override fun getFavoriteGames(): Flow<List<GameModel>> = localDataSource.getFavoriteGames()
         .map { it.map { model -> gameToDomainMapper.map(model) } }
 
     override fun isGameFavorite(id: Long) = localDataSource.exist(id)
 
-    override fun favoriteGame(model: UIGameDetailModel, toFavorite: Boolean) {
+    override fun favoriteGame(model: GameDetailModel, toFavorite: Boolean) {
         if (toFavorite) localDataSource.add(gameToDomainMapper.map(model))
         else localDataSource.remove(gameToDomainMapper.map(model))
     }

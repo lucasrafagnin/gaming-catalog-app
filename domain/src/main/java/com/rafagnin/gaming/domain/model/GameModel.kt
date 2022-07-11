@@ -1,9 +1,7 @@
 package com.rafagnin.gaming.domain.model
 
-data class UIUpcomingGameModel(
+data class GameModel(
     val id: Long,
     val name: String?,
     val image: String?,
-    val month: String?,
-    val day: String?,
 )

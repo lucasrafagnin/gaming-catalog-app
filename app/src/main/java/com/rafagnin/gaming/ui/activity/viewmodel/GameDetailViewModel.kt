@@ -3,14 +3,14 @@ package com.rafagnin.gaming.ui.activity.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rafagnin.gaming.domain.Resource
-import com.rafagnin.gaming.domain.model.UIGameDetailModel
+import com.rafagnin.gaming.domain.model.GameDetailModel
 import com.rafagnin.gaming.domain.usecase.FavoriteGame
 import com.rafagnin.gaming.domain.usecase.GetGameDetail
 import com.rafagnin.gaming.ui.activity.state.GameDetailState
 import com.rafagnin.gaming.ui.activity.state.GameDetailState.Error
 import com.rafagnin.gaming.ui.activity.state.GameDetailState.Loaded
 import com.rafagnin.gaming.ui.activity.state.GameDetailState.Loading
-import com.rafagnin.gaming.ui.fragment.action.GameDetailAction
+import com.rafagnin.gaming.ui.activity.action.GameDetailAction
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -44,7 +44,7 @@ class GameDetailViewModel @Inject constructor(
         }
     }
 
-    private fun favoriteGame(model: UIGameDetailModel) = viewModelScope.launch(Dispatchers.IO) {
+    private fun favoriteGame(model: GameDetailModel) = viewModelScope.launch(Dispatchers.IO) {
         when (val result = favoriteGame.invoke(model, !model.favorite)) {
             is Resource.Success -> state.value = Loaded(result.data)
             else -> state.value = Error

@@ -8,7 +8,7 @@ import com.rafagnin.gaming.ui.activity.state.SearchResultState
 import com.rafagnin.gaming.ui.activity.state.SearchResultState.Error
 import com.rafagnin.gaming.ui.activity.state.SearchResultState.GamesLoaded
 import com.rafagnin.gaming.ui.activity.state.SearchResultState.Loading
-import com.rafagnin.gaming.ui.fragment.action.SearchResultAction
+import com.rafagnin.gaming.ui.activity.action.SearchResultAction
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

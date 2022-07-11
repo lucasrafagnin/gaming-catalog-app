@@ -2,7 +2,7 @@ package com.rafagnin.gaming.domain.usecase
 
 import com.rafagnin.gaming.domain.Resource
 import com.rafagnin.gaming.domain.data.GameRepository
-import com.rafagnin.gaming.domain.model.UIGameModel
+import com.rafagnin.gaming.domain.model.GameModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -12,7 +12,7 @@ class GetFavoriteGames @Inject constructor(
     private val repository: GameRepository
 ) {
 
-    operator fun invoke(): Flow<Resource<List<UIGameModel>>> {
+    operator fun invoke(): Flow<Resource<List<GameModel>>> {
         return repository.getFavoriteGames()
             .map { Resource.Success(it) }
             .catch { Resource.Error<List<GameModel>>(it.message) }

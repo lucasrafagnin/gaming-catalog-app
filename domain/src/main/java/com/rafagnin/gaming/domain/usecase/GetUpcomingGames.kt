@@ -2,7 +2,7 @@ package com.rafagnin.gaming.domain.usecase
 
 import com.rafagnin.gaming.domain.Resource
 import com.rafagnin.gaming.domain.data.GameRepository
-import com.rafagnin.gaming.domain.model.UIUpcomingGameModel
+import com.rafagnin.gaming.domain.model.UpcomingGameModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -12,7 +12,7 @@ class GetUpcomingGames @Inject constructor(
     private val repository: GameRepository,
 ) {
 
-    suspend operator fun invoke(): Resource<List<UIUpcomingGameModel>> {
+    suspend operator fun invoke(): Resource<List<UpcomingGameModel>> {
         return try {
             Resource.Success(repository.getUpcomingGames(getNextYearDate()))
         } catch (exception: Exception) {

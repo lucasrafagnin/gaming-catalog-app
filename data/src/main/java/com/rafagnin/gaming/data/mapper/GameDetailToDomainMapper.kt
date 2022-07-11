@@ -1,17 +1,17 @@
 package com.rafagnin.gaming.data.mapper
 
-import com.rafagnin.gaming.data.model.DeveloperModel
-import com.rafagnin.gaming.data.model.GameModel
-import com.rafagnin.gaming.data.model.GenreModel
+import com.rafagnin.gaming.data.model.JsonDeveloperModel
+import com.rafagnin.gaming.data.model.JsonGameModel
+import com.rafagnin.gaming.data.model.JsonGenreModel
 import com.rafagnin.gaming.data.model.PlatformResult
-import com.rafagnin.gaming.data.model.TagModel
-import com.rafagnin.gaming.domain.model.UIGameDetailModel
+import com.rafagnin.gaming.data.model.JsonTagModel
+import com.rafagnin.gaming.domain.model.GameDetailModel
 import com.rafagnin.gaming.domain.util.ScoreLevel
 import javax.inject.Inject
 
 class GameDetailToDomainMapper @Inject constructor() {
 
-    fun map(it: GameModel) = UIGameDetailModel(
+    fun map(it: JsonGameModel) = GameDetailModel(
         id = it.id,
         name = it.name,
         image = it.image,
@@ -34,7 +34,7 @@ class GameDetailToDomainMapper @Inject constructor() {
         else -> ScoreLevel.POOR
     }
 
-    private fun mapTags(models: List<TagModel>?) = models
+    private fun mapTags(models: List<JsonTagModel>?) = models
         ?.map { it.slug }
         ?.take(12)
 
@@ -43,11 +43,11 @@ class GameDetailToDomainMapper @Inject constructor() {
         ?.map { it.name }
         .run { mapList(this) }
 
-    private fun mapGenres(models: List<GenreModel>?) = models
+    private fun mapGenres(models: List<JsonGenreModel>?) = models
         ?.map { it.name }
         .run { mapList(this) }
 
-    private fun mapDevelopers(models: List<DeveloperModel>?) = models
+    private fun mapDevelopers(models: List<JsonDeveloperModel>?) = models
         ?.map { it.name }
         .run { mapList(this) }
 

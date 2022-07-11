@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class UpcomingGameToDomainMapper @Inject constructor() {
 
-    fun map(it: GameModel) = UIUpcomingGameModel(
+    fun map(it: JsonGameModel) = UpcomingGameModel(
         id = it.id,
         name = it.name,
         image = it.image,

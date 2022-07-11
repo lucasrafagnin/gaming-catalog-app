@@ -2,7 +2,7 @@ package com.rafagnin.gaming.domain.model
 
 import com.rafagnin.gaming.domain.util.ScoreLevel
 
-data class UIGameDetailModel(
+data class GameDetailModel(
     val id: Long,
     val name: String?,
     val image: String?,

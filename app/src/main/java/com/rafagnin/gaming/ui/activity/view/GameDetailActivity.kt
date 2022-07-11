@@ -10,13 +10,13 @@ import coil.load
 import com.google.android.material.chip.Chip
 import com.rafagnin.gaming.R
 import com.rafagnin.gaming.databinding.ActivityDetailBinding
-import com.rafagnin.gaming.domain.model.UIGameDetailModel
+import com.rafagnin.gaming.domain.model.GameDetailModel
 import com.rafagnin.gaming.domain.util.ScoreLevel
 import com.rafagnin.gaming.ext.gone
 import com.rafagnin.gaming.ext.show
 import com.rafagnin.gaming.ui.activity.state.GameDetailState
 import com.rafagnin.gaming.ui.activity.viewmodel.GameDetailViewModel
-import com.rafagnin.gaming.ui.fragment.action.GameDetailAction
+import com.rafagnin.gaming.ui.activity.action.GameDetailAction
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -60,7 +60,7 @@ class GameDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupView(game: UIGameDetailModel?) = game?.let {
+    private fun setupView(game: GameDetailModel?) = game?.let {
         binding.image.load(it.image) {
             crossfade(true)
         }
@@ -81,7 +81,7 @@ class GameDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setFavorite(game: UIGameDetailModel) = with(binding.favorite) {
+    private fun setFavorite(game: GameDetailModel) = with(binding.favorite) {
         setImageResource(if (game.favorite) R.drawable.ic_favorite else R.drawable.ic_unfavorite)
         setBackgroundResource(R.drawable.bg_favorite)
         setOnClickListener {

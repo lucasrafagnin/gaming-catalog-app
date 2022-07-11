@@ -1,4 +1,4 @@
-package com.rafagnin.gaming.ui.fragment.action
+package com.rafagnin.gaming.ui.activity.action
 
 sealed class SearchResultAction {
     object Retry: SearchResultAction()
