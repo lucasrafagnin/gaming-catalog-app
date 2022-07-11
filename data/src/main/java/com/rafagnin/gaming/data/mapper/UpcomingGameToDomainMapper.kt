@@ -1,9 +1,8 @@
 package com.rafagnin.gaming.data.mapper
 
-import com.rafagnin.gaming.data.model.GameModel
-import com.rafagnin.gaming.domain.model.UIUpcomingGameModel
-import java.text.SimpleDateFormat
-import java.util.Locale
+import com.rafagnin.gaming.data.common.DateHelper
+import com.rafagnin.gaming.data.model.JsonGameModel
+import com.rafagnin.gaming.domain.model.UpcomingGameModel
 import javax.inject.Inject
 
 class UpcomingGameToDomainMapper @Inject constructor() {
@@ -12,15 +11,7 @@ class UpcomingGameToDomainMapper @Inject constructor() {
         id = it.id,
         name = it.name,
         image = it.image,
-        day = mapDate(it.releasedDate, "dd"),
-        month = mapDate(it.releasedDate, "MMM"),
+        day = DateHelper.mapDate(it.releasedDate, "dd"),
+        month = DateHelper.mapDate(it.releasedDate, "MMM"),
     )
-
-    private fun mapDate(date: String?, newFormat: String): String? {
-        if (date == null) return null
-        val formatOld = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val formatNew = SimpleDateFormat(newFormat, Locale.getDefault())
-        val formatted = formatOld.parse(date)
-        return formatNew.format(formatted)
-    }
 }
