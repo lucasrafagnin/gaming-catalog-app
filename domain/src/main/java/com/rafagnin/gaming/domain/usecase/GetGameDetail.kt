@@ -18,7 +18,7 @@ class GetGameDetail @Inject constructor(
                 )
             )
         } catch (exception: Exception) {
-            Resource.Error("error")
+            Resource.Error(exception.message)
         }
     }
 }

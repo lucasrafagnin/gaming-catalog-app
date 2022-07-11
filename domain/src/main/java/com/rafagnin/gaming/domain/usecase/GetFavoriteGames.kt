@@ -15,6 +15,6 @@ class GetFavoriteGames @Inject constructor(
     operator fun invoke(): Flow<Resource<List<UIGameModel>>> {
         return repository.getFavoriteGames()
             .map { Resource.Success(it) }
-            .catch { Resource.Error<List<UIGameModel>>("error") }
+            .catch { Resource.Error<List<GameModel>>(it.message) }
     }
 }

@@ -16,7 +16,7 @@ class GetUpcomingGames @Inject constructor(
         return try {
             Resource.Success(repository.getUpcomingGames(getNextYearDate()))
         } catch (exception: Exception) {
-            Resource.Error("error")
+            Resource.Error(exception.message)
         }
     }
 

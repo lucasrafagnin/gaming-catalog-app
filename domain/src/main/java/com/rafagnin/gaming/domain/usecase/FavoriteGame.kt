@@ -14,7 +14,7 @@ class FavoriteGame @Inject constructor(
             repository.favoriteGame(model, toFavorite)
             Resource.Success(model.copy(favorite = toFavorite))
         } catch (exception: Exception) {
-            Resource.Error("error")
+            Resource.Error(exception.message)
         }
     }
 }

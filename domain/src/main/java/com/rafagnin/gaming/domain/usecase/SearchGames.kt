@@ -13,7 +13,7 @@ class SearchGames @Inject constructor(
         return try {
             Resource.Success(repository.searchGames(query))
         } catch (exception: Exception) {
-            Resource.Error("error")
+            Resource.Error(exception.message)
         }
     }
 }
