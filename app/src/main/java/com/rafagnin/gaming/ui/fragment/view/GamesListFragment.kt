@@ -20,7 +20,6 @@ import com.rafagnin.gaming.ui.fragment.state.GamesListState.Loading
 import com.rafagnin.gaming.ui.fragment.viewmodel.GamesListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class GamesListFragment : Fragment(), GamesAdapter.AdapterCallback {
