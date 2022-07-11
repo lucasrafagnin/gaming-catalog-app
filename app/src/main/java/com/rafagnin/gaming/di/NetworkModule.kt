@@ -45,7 +45,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideMoshiConverter() = MoshiConverterFactory.create(
+    fun provideMoshiConverter(): MoshiConverterFactory = MoshiConverterFactory.create(
         Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .build()
@@ -56,13 +56,13 @@ class NetworkModule {
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         moshiConverterFactory: MoshiConverterFactory
-    ) = Retrofit.Builder()
+    ): Retrofit = Retrofit.Builder()
         .client(okHttpClient)
-        .baseUrl("https://api.rawg.io/")
+        .baseUrl(BuildConfig.RAWG_URL)
         .addConverterFactory(moshiConverterFactory)
         .build()
 
     @Singleton
     @Provides
-    fun provideGameApi(retrofit: Retrofit) = retrofit.create(GamingService::class.java)
+    fun provideGameApi(retrofit: Retrofit): GamingService = retrofit.create(GamingService::class.java)
 }

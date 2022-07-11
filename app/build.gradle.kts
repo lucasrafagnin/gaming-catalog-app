@@ -21,6 +21,7 @@ android {
         versionName = "0.1-alpha"
 
         buildConfigField("String", "RAWG_API_KEY", apiKey)
+        buildConfigField("String", "RAWG_URL", "\"https://api.rawg.io/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
