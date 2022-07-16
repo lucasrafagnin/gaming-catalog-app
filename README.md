@@ -7,7 +7,7 @@
 A Gaming Catalog 🎮 app showcase using a modern Android tech-stacks and MVVM architecture.<br>
 </p>
 
-![Cover](https://github.com/lucasrafagnin/gaming-catalog-app/blob/master/assets/cover.jpg)
+![Cover](https://github.com/lucasrafagnin/gaming-catalog-app/blob/main/assets/cover.jpg)
 
 ## Tech Stack 🛠
 - Minimum SDK API level: 21
