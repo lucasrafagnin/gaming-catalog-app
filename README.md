@@ -1,4 +1,3 @@
-
 <h1 align="center">Gaming Catalog</h1></br>
 
 <p align="center">
@@ -7,7 +6,8 @@
 <p align="center">  
 A Gaming Catalog 🎮 app showcase using a modern Android tech-stacks and MVVM architecture.<br>
 </p>
-<br>
+
+![Cover](https://github.com/lucasrafagnin/gaming-catalog-app/blob/master/assets/cover.jpg)
 
 ## Tech Stack 🛠
 - Minimum SDK API level: 21
